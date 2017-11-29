@@ -126,9 +126,11 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 		 
 		 UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
 		 final ThemeDisplay themeDisplay = (ThemeDisplay) uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY) ;
-		 //long fileEntryId = ParamUtil.getLong(uploadPortletRequest, "");
-		// String fileName=uploadPortletRequest.getFileName("editPhoto");
+		 
+		 //long fileEntryId = employee.getFileEntryId();
 		 long fileEntryId = fileUpload(themeDisplay, actionRequest);
+		 System.out.println("employee.getFileEntryId()  : "+employee.getFileEntryId());
+		 System.out.println("fileUpload(themeDisplay, actionRequest)  : "+fileEntryId);
 		 
 		 if(Validator.isNotNull(employee)) {
 			 employee.setEmpId(id);
@@ -140,6 +142,8 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 		 }
 		 Employee editEmployee = EmployeeLocalServiceUtil.updateEmployee(employee);
 		 
+		 
+		 
 		
 		 
 		System.out.println("updateEmployee :- "+editEmployee);
@@ -150,13 +154,11 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
  public void deleteEmp(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, SystemException {
 	 System.out.println("calling...................");
 	 long empId = ParamUtil.getLong(actionRequest, "id");
+	 Employee empl = EmployeeLocalServiceUtil.getEmployee(empId);
+	 long fileEntryID = empl.getFileEntryId();
 	 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId);
-	 
-	 UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
-	 final ThemeDisplay themeDisplay = (ThemeDisplay) uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY) ;
-	 long fileEntryId = fileUpload(themeDisplay, actionRequest);
-	// FileEntry fileEntry = DLAppLocalServiceUtil.
-	DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryId);
+	
+	DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID);
 	 actionResponse.setRenderParameter("mvcPath", "/html/employee/view.jsp");
  }
  

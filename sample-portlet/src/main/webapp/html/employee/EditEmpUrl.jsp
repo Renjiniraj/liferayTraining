@@ -42,9 +42,10 @@
  <portlet:actionURL name="editEmpAction" var="editEmpActionUrl">
  </portlet:actionURL>
 
- <aui:form action="<%=editEmpActionUrl.toString()%>" method="post" name="editEmpAction">
+ <aui:form action="<%=editEmpActionUrl.toString()%>" method="post" name="editEmpAction" enctype="multipart/form-data">
    <div>
      <div>
+      
        <aui:input name="id" type="number" value="<%=employee.getEmpId()%>"></aui:input> 
        <aui:input name="name" type="text" value="<%=employee.getEmployeeName()%>"></aui:input> 
        <aui:input name="age" type="text" value="<%=employee.getAge() %>"></aui:input> 
@@ -52,8 +53,8 @@
        <aui:input name="unit" type="text" value="<%=employee.getUnit() %>"></aui:input> 
      </div>
      <div>
-         <img src="<%=imageUrl%>" alt="photo" height="100" width="100">
-        <aui:input type="file" class="" maxlength="1" name="Photo" value="Upload Photo"></aui:input>
+          <img src="<%=imageUrl%>" alt="photo" height="100" width="100">
+         <aui:input type="file" class="multi" maxlength="10" name="Photo" value="Upload Photo"/>
       </div>
     <div>
        <aui:button-row>
