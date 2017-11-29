@@ -81,7 +81,7 @@ public class EmployeePortlet extends MVCPortlet {
 	 
 	 
 	  actionResponse.setRenderParameter("mvcPath",
-	    "/html/employee/view.jsp");
+	    "/html/employee/addEmployee.jsp");
 	 }
 	 
  private long fileUpload(ThemeDisplay themeDisplay, ActionRequest actionRequest) {
@@ -148,7 +148,7 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 		
 		 
 		System.out.println("updateEmployee :- "+editEmployee);
-		actionResponse.setRenderParameter("mvcPath",  "/html/employee/view.jsp");
+		actionResponse.setRenderParameter("mvcPath",  "/html/employee/addEmployee.jsp");
 		 
 	 } 
  
@@ -160,7 +160,7 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 	 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId);
 	
 	DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID);
-	 actionResponse.setRenderParameter("mvcPath", "/html/employee/view.jsp");
+	 actionResponse.setRenderParameter("mvcPath", "/html/employee/addEmployee.jsp");
  }
  
  public Folder createFolder(ActionRequest actionRequest,ThemeDisplay themeDisplay)

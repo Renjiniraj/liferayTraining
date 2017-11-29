@@ -1,53 +1,25 @@
-
-<%@page import="javax.portlet.ActionRequest"%>
-<%@page import="com.liferay.portal.kernel.portlet.LiferayPortletMode"%>
-<%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
-<%@page import="javax.portlet.PortletURL"%>
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet"%>
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme"%>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui"%>
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui"%>
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet"%>
+<%@page import="com.liferay.portal.model.Role"%>
 <%@page import="java.util.List"%>
-<%@ page import="com.liferay.taglib.ui.SearchContainerTag" %>
-<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
-<%@page import ="net.opentrends.training.model.Employee" %>
-<%@page import ="net.opentrends.training.service.EmployeeLocalServiceUtil" %>
- <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="javax.portlet.PortletURL"%>
+
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme"%>
+<liferay-theme:defineObjects />
 
 <portlet:defineObjects />
 
-<%
- PortletURL homeURL = renderResponse.createRenderURL();
-List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);
+<% List<Role> roleItems = themeDisplay.getUser().getRoles();
+PortletURL addStudent = renderResponse.createRenderURL();
+addStudent.setParameter("mvcPath", "/html/employee/addEmployee.jsp");
 %>
-<portlet:actionURL name="addEmpAction" var="addEmpActionURL"/>
-<h4>Add Employee Details Form here !</h4>
-<a href="<%=homeURL.toString()%>">Home</a>
-<br />
-<br />
-<aui:form action="<%=addEmpActionURL.toString()%>" method="post" name="addEmpAction" enctype="multipart/form-data">
-   <aui:input name="name" > <aui:validator name="required" errorMessage="This field is required"/></aui:input>
-   <aui:input name="age" ></aui:input> 
-   <aui:input name="salary" ></aui:input>
-   <aui:input name="unit" ></aui:input> 
-   <aui:input type="file" class="multi" maxlength="10" name="photo" value="Upload Photo"/> 
-   <aui:button type="submit" name="" value="Submit"></aui:button>
-</aui:form>
 
-<liferay-portlet:renderURL varImpl="iteratorURL">
-       <portlet:param name="mvcPath" value="/html/employee/view.jsp" />
-</liferay-portlet:renderURL>
+<c:forEach var="role" items="<%= roleItems%>">
+ <c:if test="${role.getName()== 'Manager' }">
+    <h4><a href="<%=addStudent.toString()%>">Add Employee Details</a></h4>
+ </c:if>
+ <c:if test="${role.getName()== 'Employee' }">
+    <h4>Employee Role</h4>
+ </c:if>
 
-<liferay-ui:search-container var="searchContainer"  delta="2"  deltaConfigurable="true" total="<%=employeesList.size() %>" >
-
- <%-- <liferay-ui:search-container> --%>
-   
-    <liferay-ui:search-container-results  results="<%= ListUtil.subList(employeesList, searchContainer.getStart(), searchContainer.getEnd()) %>" total="<%=employeesList.size() %>" />
-          <liferay-ui:search-container-row className="net.opentrends.training.model.Employee" keyProperty="id" modelVar="empItem">
-                 <liferay-ui:search-container-column-text name="id" value="<%=String.valueOf(empItem.getEmpId())%>"/>
-                 <liferay-ui:search-container-column-text name="Employee" value="<%=empItem.getEmployeeName() %>"/>
-                 <liferay-ui:search-container-column-jsp  path="/html/employee/EditEmployee.jsp" align="right"/> 
-          </liferay-ui:search-container-row>
-    <liferay-ui:search-iterator />
-</liferay-ui:search-container>
+</c:forEach>
