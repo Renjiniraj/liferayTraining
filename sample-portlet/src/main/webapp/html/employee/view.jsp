@@ -31,7 +31,7 @@ List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);
    <aui:input name="age" ></aui:input> 
    <aui:input name="salary" ></aui:input>
    <aui:input name="unit" ></aui:input> 
-   <aui:input type="file" class="multi" maxlength="10" name="Photo" value="Upload Photo"/> 
+   <aui:input type="file" class="multi" maxlength="10" name="photo" value="Upload Photo"/> 
    <aui:button type="submit" name="" value="Submit"></aui:button>
 </aui:form>
 
@@ -39,11 +39,11 @@ List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);
        <portlet:param name="mvcPath" value="/html/employee/view.jsp" />
 </liferay-portlet:renderURL>
 
-<liferay-ui:search-container var="searchContainer"  delta="2"  deltaConfigurable="true" iteratorURL="<%=iteratorURL %>" >
+<liferay-ui:search-container var="searchContainer"  delta="2"  deltaConfigurable="true" total="<%=employeesList.size() %>" >
 
  <%-- <liferay-ui:search-container> --%>
    
-    <liferay-ui:search-container-results  results="<%= ListUtil.subList(employeesList, searchContainer.getStart(), searchContainer.getEnd()) %>" total="${employeesList.size()}" />
+    <liferay-ui:search-container-results  results="<%= ListUtil.subList(employeesList, searchContainer.getStart(), searchContainer.getEnd()) %>" total="<%=employeesList.size() %>" />
           <liferay-ui:search-container-row className="net.opentrends.training.model.Employee" keyProperty="id" modelVar="empItem">
                  <liferay-ui:search-container-column-text name="id" value="<%=String.valueOf(empItem.getEmpId())%>"/>
                  <liferay-ui:search-container-column-text name="Employee" value="<%=empItem.getEmployeeName() %>"/>

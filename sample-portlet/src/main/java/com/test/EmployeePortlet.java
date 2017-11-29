@@ -88,9 +88,9 @@ public class EmployeePortlet extends MVCPortlet {
 	 UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
 	 long fileEntryId = 0;
 	   if(isFileExsistinReq(uploadPortletRequest)) {
-		 String fileName=uploadPortletRequest.getFileName("Photo");		 			
-			File file = uploadPortletRequest.getFile("Photo");
-			String mimeType = uploadPortletRequest.getContentType("Photo");
+		 String fileName=uploadPortletRequest.getFileName("photo");		 			
+			File file = uploadPortletRequest.getFile("photo");
+			String mimeType = uploadPortletRequest.getContentType("photo");
 	                 String title = fileName;
 			String description = "This file is added ";
 			long repositoryId = themeDisplay.getScopeGroupId();
@@ -127,7 +127,8 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 		 UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
 		 final ThemeDisplay themeDisplay = (ThemeDisplay) uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY) ;
 		 
-		 //long fileEntryId = employee.getFileEntryId();
+		 long preFileEntryId = employee.getFileEntryId();
+		 DLFileEntryLocalServiceUtil.deleteDLFileEntry(preFileEntryId);
 		 long fileEntryId = fileUpload(themeDisplay, actionRequest);
 		 System.out.println("employee.getFileEntryId()  : "+employee.getFileEntryId());
 		 System.out.println("fileUpload(themeDisplay, actionRequest)  : "+fileEntryId);
@@ -214,7 +215,7 @@ public Folder getFolder(ThemeDisplay themeDisplay) {
 public static boolean isFileExsistinReq(final UploadPortletRequest request) {
 	    boolean isfileExsist = false;
 	    
-	   final FileItem[] items = request.getMultipartParameterMap().get("Photo");
+	   final FileItem[] items = request.getMultipartParameterMap().get("photo");
 	   if(items == null || items.length==0) {
 		   return false;
 	   }
