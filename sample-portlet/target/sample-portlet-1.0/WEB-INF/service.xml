@@ -1,0 +1,67 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="net.opentrends.training">
+	<namespace>sample</namespace>
+	<entity name="Foo" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="fooId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="field1" type="String" />
+		<column name="field2" type="boolean" />
+		<column name="field3" type="int" />
+		<column name="field4" type="Date" />
+		<column name="field5" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="field1" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Field2" return-type="Collection">
+			<finder-column name="field2" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
+	</entity>
+	
+	<entity name="Student" local-service="true" remote-service="true">
+	    <column name="studentid" type="long" primary="true"/>
+		<column name="fname" type="String" />
+		<column name="lname" type="String" />
+		<column name="age" type="int" />
+		<column name="branch" type="String" />
+		<column name="email" type="String" />
+	</entity>
+	
+	<entity name="Employee" local-service="true" remote-service="true">
+	    <column name="empId" type="long" primary="true"/>
+		<column name="employeeName" type="String" />
+		<column name="age" type="int" />
+		<column name="salary" type="long" />
+		<column name="fileEntryId" type="long" />
+		<column name="unit" type="String" />
+		
+	</entity>
+</service-builder>

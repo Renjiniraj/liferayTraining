@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="net.opentrends.training.model.Employee" />
+	<import class="net.opentrends.training.model.Foo" />
+	<import class="net.opentrends.training.model.Student" />
+	<class name="net.opentrends.training.model.impl.EmployeeImpl" table="sample_Employee">
+		<cache usage="read-write" />
+		<id name="empId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="employeeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="age" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="salary" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="unit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.opentrends.training.model.impl.FooImpl" table="sample_Foo">
+		<cache usage="read-write" />
+		<id name="fooId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="field1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="field2" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="field3" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="field4" type="org.hibernate.type.TimestampType" />
+		<property name="field5" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.opentrends.training.model.impl.StudentImpl" table="sample_Student">
+		<cache usage="read-write" />
+		<id name="studentid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="fname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="age" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="branch" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
