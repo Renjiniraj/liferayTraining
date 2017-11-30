@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -13,6 +14,8 @@ import javax.portlet.PortletException;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.upload.FileItem;
@@ -20,8 +23,14 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -46,6 +55,8 @@ public class EmployeePortlet extends MVCPortlet {
 	private static String ROOT_FOLDER_NAME = PortletProps.get("fileupload.folder.name");
 	private static String ROOT_FOLDER_DESCRIPTION = PortletProps.get("fileupload.folder.description");
 	
+	private static Log _log = LogFactoryUtil.getLog(Employee.class);
+	
 	 public void addEmpAction(ActionRequest actionRequest,ActionResponse actionResponse) throws IOException,
 	   PortletException, SystemException, PortalException {
 
@@ -63,7 +74,8 @@ public class EmployeePortlet extends MVCPortlet {
 		  final ThemeDisplay themeDisplay = (ThemeDisplay) portletRequest.getAttribute(WebKeys.THEME_DISPLAY) ;
 		  createFolder(actionRequest,themeDisplay);
 		  long fileEntryId = fileUpload(themeDisplay, actionRequest);
-		  
+		 
+		 
 		  employee.setEmpId(empId);
 		  if(Validator.isNotNull(empName)) {
 			  employee.setEmployeeName(empName); 
@@ -89,7 +101,7 @@ public class EmployeePortlet extends MVCPortlet {
 		  e.printStackTrace();
 		System.out.println(e.getMessage());
 	}
-	 
+	  
 	 
 	  actionResponse.setRenderParameter("mvcPath",
 	    "/html/employee/view.jsp");
@@ -178,15 +190,34 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 	 Employee empl = EmployeeLocalServiceUtil.getEmployee(empId);
 	 long fileEntryID = empl.getFileEntryId();
 	 
-	 if(Validator.isNotNull(empId)) {
-		 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId); 
-	 }
-	
+	 UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
+	 final ThemeDisplay themeDisplay = (ThemeDisplay) uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY);
 	 
-	 if(Validator.isNotNull(fileEntryID)) {
-		 DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID); 
-	 }
-	
+	 try {
+		 
+	  List<Role> userRoles=RoleLocalServiceUtil.getUserRoles(themeDisplay.getUserId());
+	  for (Role role : userRoles) {
+		  long roleId = role.getRoleId();
+		  if(Validator.isNotNull(roleId)) {
+			  Role roleItem = RoleLocalServiceUtil.getRole(roleId);
+			  if(Validator.isNotNull(roleItem)) {
+				  String roleName = String.valueOf(roleItem.getName());
+				   if(RoleConstants.ADMINISTRATOR.equals(roleName)) {
+					   if(Validator.isNotNull(empId)) {
+							 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId); 
+						 }
+						 if(Validator.isNotNull(fileEntryID)) {
+							 DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID); 
+						 }
+				   } else {
+					   System.out.println("ADMINISTRATOR can only access to delete employee details");
+				   }
+			  }
+		  }
+	  }
+	 } catch (Exception e) {
+		_log.info(e);
+	} 
 	 actionResponse.setRenderParameter("mvcPath", "/html/employee/addEmployee.jsp");
  }
  
