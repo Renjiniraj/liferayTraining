@@ -17,6 +17,9 @@
 
 <portlet:defineObjects />
 
+<liferay-ui:success key="success-key" message="Successfully" />
+<liferay-ui:error key="error-key" message="Error - Delete operation only for Admin"/>
+
 <%
  PortletURL homeURL = renderResponse.createRenderURL();
 List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);

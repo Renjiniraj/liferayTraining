@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
@@ -16,10 +17,14 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.FileItem;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -186,6 +191,10 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 	 } 
  
  public void deleteEmp(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, SystemException {
+	 PortletConfig portletConfig = (PortletConfig)actionRequest.getAttribute(JavaConstants.JAVAX_PORTLET_CONFIG);
+	 SessionMessages.add(actionRequest, ((LiferayPortletConfig)portletConfig).getPortletId() + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+	 SessionMessages.add(actionRequest, ((LiferayPortletConfig)portletConfig).getPortletId() + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
+	 
 	 long empId = ParamUtil.getLong(actionRequest, "id");
 	 Employee empl = EmployeeLocalServiceUtil.getEmployee(empId);
 	 long fileEntryID = empl.getFileEntryId();
@@ -200,25 +209,30 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 		  long roleId = role.getRoleId();
 		  if(Validator.isNotNull(roleId)) {
 			  Role roleItem = RoleLocalServiceUtil.getRole(roleId);
+			  System.out.println("Role Name : "+roleItem.getName());
 			  if(Validator.isNotNull(roleItem)) {
-				  String roleName = String.valueOf(roleItem.getName());
-				   if(RoleConstants.ADMINISTRATOR.equals(roleName)) {
+				  String roleName = roleItem.getName();
+				   if(RoleConstants.ADMINISTRATOR.equals(roleName))
+					 /*  || RoleConstants.POWER_USER.equals(roleName) || RoleConstants.USER.equals(roleName)*/
+						    {
 					   if(Validator.isNotNull(empId)) {
 							 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId); 
 						 }
 						 if(Validator.isNotNull(fileEntryID)) {
 							 DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID); 
-						 }
-				   } else {
+						 } 
+						 SessionMessages.add(actionRequest,"success-key");
+				   }  else  {
+					   SessionErrors.add(actionRequest, "error-key");
 					   System.out.println("ADMINISTRATOR can only access to delete employee details");
-				   }
+				   } 
 			  }
 		  }
 	  }
 	 } catch (Exception e) {
 		_log.info(e);
 	} 
-	 actionResponse.setRenderParameter("mvcPath", "/html/employee/addEmployee.jsp");
+	 actionResponse.setRenderParameter("mvcPath", "/html/employee/view.jsp");
  }
  
  public Folder createFolder(ActionRequest actionRequest,ThemeDisplay themeDisplay)
