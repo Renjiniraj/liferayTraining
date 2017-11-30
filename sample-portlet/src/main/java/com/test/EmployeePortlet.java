@@ -65,13 +65,24 @@ public class EmployeePortlet extends MVCPortlet {
 		  long fileEntryId = fileUpload(themeDisplay, actionRequest);
 		  
 		  employee.setEmpId(empId);
-		  employee.setEmployeeName(empName);
-		  employee.setAge(age);
-		  employee.setSalary(salary);
-		  employee.setUnit(unit);
-		  employee.setFileEntryId(fileEntryId);
-		  
+		  if(Validator.isNotNull(empName)) {
+			  employee.setEmployeeName(empName); 
+		  }
+		  if(Validator.isNotNull(age)) {
+			  employee.setAge(age); 
+		  }
+		  if(Validator.isNotNull(salary)) {
+			  employee.setSalary(salary); 
+		  }
+		  if(Validator.isNotNull(unit)) {
+			  employee.setUnit(unit);
+		  }
+		  if(Validator.isNotNull(fileEntryId)) {
+			  employee.setFileEntryId(fileEntryId);
+		  }
 		  EmployeeLocalServiceUtil.addEmployee(employee);
+		  
+		 
 		  List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);
 		  System.out.println(employeesList);
 	  } catch (Exception e) {
@@ -81,7 +92,7 @@ public class EmployeePortlet extends MVCPortlet {
 	 
 	 
 	  actionResponse.setRenderParameter("mvcPath",
-	    "/html/employee/addEmployee.jsp");
+	    "/html/employee/view.jsp");
 	 }
 	 
  private long fileUpload(ThemeDisplay themeDisplay, ActionRequest actionRequest) {
@@ -128,24 +139,34 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 		 final ThemeDisplay themeDisplay = (ThemeDisplay) uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY) ;
 		 
 		 long preFileEntryId = employee.getFileEntryId();
-		 DLFileEntryLocalServiceUtil.deleteDLFileEntry(preFileEntryId);
+		 if(Validator.isNotNull(preFileEntryId)) {
+			 DLFileEntryLocalServiceUtil.deleteDLFileEntry(preFileEntryId); 
+		 }
+		
 		 long fileEntryId = fileUpload(themeDisplay, actionRequest);
 		 System.out.println("employee.getFileEntryId()  : "+employee.getFileEntryId());
 		 System.out.println("fileUpload(themeDisplay, actionRequest)  : "+fileEntryId);
 		 
-		 if(Validator.isNotNull(employee)) {
+		 if(Validator.isNotNull(id)) {
 			 employee.setEmpId(id);
-			 employee.setEmployeeName(name);
+		 }
+		 if(Validator.isNotNull(name)) {
+			 employee.setEmployeeName(name); 
+		 }
+		 if(Validator.isNotNull(age)) {
 			 employee.setAge(age);
+		 }
+		 if(Validator.isNotNull(salary)) {
 			 employee.setSalary(salary);
+		 }
+		 if(Validator.isNotNull(unit)) {
 			 employee.setUnit(unit);
+		 }
+		 if(Validator.isNotNull(fileEntryId)) {
 			 employee.setFileEntryId(fileEntryId);
 		 }
+			
 		 Employee editEmployee = EmployeeLocalServiceUtil.updateEmployee(employee);
-		 
-		 
-		 
-		
 		 
 		System.out.println("updateEmployee :- "+editEmployee);
 		actionResponse.setRenderParameter("mvcPath",  "/html/employee/addEmployee.jsp");
@@ -153,13 +174,19 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 	 } 
  
  public void deleteEmp(ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, SystemException {
-	 System.out.println("calling...................");
 	 long empId = ParamUtil.getLong(actionRequest, "id");
 	 Employee empl = EmployeeLocalServiceUtil.getEmployee(empId);
 	 long fileEntryID = empl.getFileEntryId();
-	 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId);
+	 
+	 if(Validator.isNotNull(empId)) {
+		 Employee employee = EmployeeLocalServiceUtil.deleteEmployee(empId); 
+	 }
 	
-	DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID);
+	 
+	 if(Validator.isNotNull(fileEntryID)) {
+		 DLFileEntryLocalServiceUtil.deleteDLFileEntry(fileEntryID); 
+	 }
+	
 	 actionResponse.setRenderParameter("mvcPath", "/html/employee/addEmployee.jsp");
  }
  
@@ -169,7 +196,6 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
         Folder folder = getFolder(themeDisplay);
 		if (!folderExist) {
 			long repositoryId = themeDisplay.getScopeGroupId();	
-			long userId = themeDisplay.getUserId();
 			try {
 				ServiceContext serviceContext = ServiceContextFactory.getInstance(DLFolder.class.getName(), actionRequest);
 				folder = DLAppServiceUtil.addFolder(repositoryId,PARENT_FOLDER_ID, ROOT_FOLDER_NAME,ROOT_FOLDER_DESCRIPTION, serviceContext);
