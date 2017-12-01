@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,11 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -30,6 +34,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -45,6 +50,7 @@ import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.mail.InternetAddressUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import net.opentrends.training.model.Employee;
@@ -232,11 +238,16 @@ public void editEmpAction(ActionRequest actionRequest, ActionResponse actionResp
 	 } catch (Exception e) {
 		_log.info(e);
 	} 
-	 actionResponse.setRenderParameter("mvcPath", "/html/employee/view.jsp");
+	// User user = themeDisplay.getUser();
+	 /*String email = user.getEmailAddress();
+	 InternetAddress fromAddress = null;
+	 InternetAddress toAddress = null;
+	 MailServiceUtil.
+	 actionResponse.setRenderParameter("mvcPath", "/html/employee/view.jsp");*/
  }
  
  public Folder createFolder(ActionRequest actionRequest,ThemeDisplay themeDisplay)
-	{
+	{   
         boolean folderExist = isFolderExist(themeDisplay);
         Folder folder = getFolder(themeDisplay);
 		if (!folderExist) {

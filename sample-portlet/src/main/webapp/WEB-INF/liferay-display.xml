@@ -7,5 +7,6 @@
 		<portlet id="new"></portlet>
 		<portlet id="student"></portlet>
 		<portlet id="employee"></portlet>
+		<portlet id="role"></portlet>
 	</category>
 </display>
