@@ -1,6 +1,7 @@
 package net.opentrends.training.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -9,6 +10,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -50,13 +52,13 @@ public class StudentModelImpl extends BaseModelImpl<Student>
     public static final String TABLE_NAME = "sample_Student";
     public static final Object[][] TABLE_COLUMNS = {
             { "studentid", Types.BIGINT },
-            { "fname", Types.VARCHAR },
-            { "lname", Types.VARCHAR },
-            { "age", Types.INTEGER },
-            { "branch", Types.VARCHAR },
-            { "email", Types.VARCHAR }
+            { "name", Types.VARCHAR },
+            { "dept_id", Types.BIGINT },
+            { "rollNo", Types.INTEGER },
+            { "userId", Types.BIGINT },
+            { "groupId", Types.BIGINT }
         };
-    public static final String TABLE_SQL_CREATE = "create table sample_Student (studentid LONG not null primary key,fname VARCHAR(75) null,lname VARCHAR(75) null,age INTEGER,branch VARCHAR(75) null,email VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table sample_Student (studentid LONG not null primary key,name VARCHAR(75) null,dept_id LONG,rollNo INTEGER,userId LONG,groupId LONG)";
     public static final String TABLE_SQL_DROP = "drop table sample_Student";
     public static final String ORDER_BY_JPQL = " ORDER BY student.studentid ASC";
     public static final String ORDER_BY_SQL = " ORDER BY sample_Student.studentid ASC";
@@ -77,11 +79,12 @@ public class StudentModelImpl extends BaseModelImpl<Student>
             Student.class
         };
     private long _studentid;
-    private String _fname;
-    private String _lname;
-    private int _age;
-    private String _branch;
-    private String _email;
+    private String _name;
+    private long _dept_id;
+    private int _rollNo;
+    private long _userId;
+    private String _userUuid;
+    private long _groupId;
     private Student _escapedModel;
 
     public StudentModelImpl() {
@@ -101,11 +104,11 @@ public class StudentModelImpl extends BaseModelImpl<Student>
         Student model = new StudentImpl();
 
         model.setStudentid(soapModel.getStudentid());
-        model.setFname(soapModel.getFname());
-        model.setLname(soapModel.getLname());
-        model.setAge(soapModel.getAge());
-        model.setBranch(soapModel.getBranch());
-        model.setEmail(soapModel.getEmail());
+        model.setName(soapModel.getName());
+        model.setDept_id(soapModel.getDept_id());
+        model.setRollNo(soapModel.getRollNo());
+        model.setUserId(soapModel.getUserId());
+        model.setGroupId(soapModel.getGroupId());
 
         return model;
     }
@@ -165,11 +168,11 @@ public class StudentModelImpl extends BaseModelImpl<Student>
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("studentid", getStudentid());
-        attributes.put("fname", getFname());
-        attributes.put("lname", getLname());
-        attributes.put("age", getAge());
-        attributes.put("branch", getBranch());
-        attributes.put("email", getEmail());
+        attributes.put("name", getName());
+        attributes.put("dept_id", getDept_id());
+        attributes.put("rollNo", getRollNo());
+        attributes.put("userId", getUserId());
+        attributes.put("groupId", getGroupId());
 
         return attributes;
     }
@@ -182,34 +185,34 @@ public class StudentModelImpl extends BaseModelImpl<Student>
             setStudentid(studentid);
         }
 
-        String fname = (String) attributes.get("fname");
+        String name = (String) attributes.get("name");
 
-        if (fname != null) {
-            setFname(fname);
+        if (name != null) {
+            setName(name);
         }
 
-        String lname = (String) attributes.get("lname");
+        Long dept_id = (Long) attributes.get("dept_id");
 
-        if (lname != null) {
-            setLname(lname);
+        if (dept_id != null) {
+            setDept_id(dept_id);
         }
 
-        Integer age = (Integer) attributes.get("age");
+        Integer rollNo = (Integer) attributes.get("rollNo");
 
-        if (age != null) {
-            setAge(age);
+        if (rollNo != null) {
+            setRollNo(rollNo);
         }
 
-        String branch = (String) attributes.get("branch");
+        Long userId = (Long) attributes.get("userId");
 
-        if (branch != null) {
-            setBranch(branch);
+        if (userId != null) {
+            setUserId(userId);
         }
 
-        String email = (String) attributes.get("email");
+        Long groupId = (Long) attributes.get("groupId");
 
-        if (email != null) {
-            setEmail(email);
+        if (groupId != null) {
+            setGroupId(groupId);
         }
     }
 
@@ -226,73 +229,71 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
     @JSON
     @Override
-    public String getFname() {
-        if (_fname == null) {
+    public String getName() {
+        if (_name == null) {
             return StringPool.BLANK;
         } else {
-            return _fname;
+            return _name;
         }
     }
 
     @Override
-    public void setFname(String fname) {
-        _fname = fname;
+    public void setName(String name) {
+        _name = name;
     }
 
     @JSON
     @Override
-    public String getLname() {
-        if (_lname == null) {
-            return StringPool.BLANK;
-        } else {
-            return _lname;
-        }
+    public long getDept_id() {
+        return _dept_id;
     }
 
     @Override
-    public void setLname(String lname) {
-        _lname = lname;
+    public void setDept_id(long dept_id) {
+        _dept_id = dept_id;
     }
 
     @JSON
     @Override
-    public int getAge() {
-        return _age;
+    public int getRollNo() {
+        return _rollNo;
     }
 
     @Override
-    public void setAge(int age) {
-        _age = age;
-    }
-
-    @JSON
-    @Override
-    public String getBranch() {
-        if (_branch == null) {
-            return StringPool.BLANK;
-        } else {
-            return _branch;
-        }
-    }
-
-    @Override
-    public void setBranch(String branch) {
-        _branch = branch;
+    public void setRollNo(int rollNo) {
+        _rollNo = rollNo;
     }
 
     @JSON
     @Override
-    public String getEmail() {
-        if (_email == null) {
-            return StringPool.BLANK;
-        } else {
-            return _email;
-        }
+    public long getUserId() {
+        return _userId;
     }
 
     @Override
-    public void setEmail(String email) {
-        _email = email;
+    public void setUserId(long userId) {
+        _userId = userId;
+    }
+
+    @Override
+    public String getUserUuid() throws SystemException {
+        return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+    }
+
+    @Override
+    public void setUserUuid(String userUuid) {
+        _userUuid = userUuid;
+    }
+
+    @JSON
+    @Override
+    public long getGroupId() {
+        return _groupId;
+    }
+
+    @Override
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
     }
 
     @Override
@@ -323,11 +324,11 @@ public class StudentModelImpl extends BaseModelImpl<Student>
         StudentImpl studentImpl = new StudentImpl();
 
         studentImpl.setStudentid(getStudentid());
-        studentImpl.setFname(getFname());
-        studentImpl.setLname(getLname());
-        studentImpl.setAge(getAge());
-        studentImpl.setBranch(getBranch());
-        studentImpl.setEmail(getEmail());
+        studentImpl.setName(getName());
+        studentImpl.setDept_id(getDept_id());
+        studentImpl.setRollNo(getRollNo());
+        studentImpl.setUserId(getUserId());
+        studentImpl.setGroupId(getGroupId());
 
         studentImpl.resetOriginalValues();
 
@@ -383,39 +384,21 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
         studentCacheModel.studentid = getStudentid();
 
-        studentCacheModel.fname = getFname();
+        studentCacheModel.name = getName();
 
-        String fname = studentCacheModel.fname;
+        String name = studentCacheModel.name;
 
-        if ((fname != null) && (fname.length() == 0)) {
-            studentCacheModel.fname = null;
+        if ((name != null) && (name.length() == 0)) {
+            studentCacheModel.name = null;
         }
 
-        studentCacheModel.lname = getLname();
+        studentCacheModel.dept_id = getDept_id();
 
-        String lname = studentCacheModel.lname;
+        studentCacheModel.rollNo = getRollNo();
 
-        if ((lname != null) && (lname.length() == 0)) {
-            studentCacheModel.lname = null;
-        }
+        studentCacheModel.userId = getUserId();
 
-        studentCacheModel.age = getAge();
-
-        studentCacheModel.branch = getBranch();
-
-        String branch = studentCacheModel.branch;
-
-        if ((branch != null) && (branch.length() == 0)) {
-            studentCacheModel.branch = null;
-        }
-
-        studentCacheModel.email = getEmail();
-
-        String email = studentCacheModel.email;
-
-        if ((email != null) && (email.length() == 0)) {
-            studentCacheModel.email = null;
-        }
+        studentCacheModel.groupId = getGroupId();
 
         return studentCacheModel;
     }
@@ -426,16 +409,16 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
         sb.append("{studentid=");
         sb.append(getStudentid());
-        sb.append(", fname=");
-        sb.append(getFname());
-        sb.append(", lname=");
-        sb.append(getLname());
-        sb.append(", age=");
-        sb.append(getAge());
-        sb.append(", branch=");
-        sb.append(getBranch());
-        sb.append(", email=");
-        sb.append(getEmail());
+        sb.append(", name=");
+        sb.append(getName());
+        sb.append(", dept_id=");
+        sb.append(getDept_id());
+        sb.append(", rollNo=");
+        sb.append(getRollNo());
+        sb.append(", userId=");
+        sb.append(getUserId());
+        sb.append(", groupId=");
+        sb.append(getGroupId());
         sb.append("}");
 
         return sb.toString();
@@ -454,24 +437,24 @@ public class StudentModelImpl extends BaseModelImpl<Student>
         sb.append(getStudentid());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>fname</column-name><column-value><![CDATA[");
-        sb.append(getFname());
+            "<column><column-name>name</column-name><column-value><![CDATA[");
+        sb.append(getName());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>lname</column-name><column-value><![CDATA[");
-        sb.append(getLname());
+            "<column><column-name>dept_id</column-name><column-value><![CDATA[");
+        sb.append(getDept_id());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>age</column-name><column-value><![CDATA[");
-        sb.append(getAge());
+            "<column><column-name>rollNo</column-name><column-value><![CDATA[");
+        sb.append(getRollNo());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>branch</column-name><column-value><![CDATA[");
-        sb.append(getBranch());
+            "<column><column-name>userId</column-name><column-value><![CDATA[");
+        sb.append(getUserId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>email</column-name><column-value><![CDATA[");
-        sb.append(getEmail());
+            "<column><column-name>groupId</column-name><column-value><![CDATA[");
+        sb.append(getGroupId());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

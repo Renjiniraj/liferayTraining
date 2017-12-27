@@ -25,10 +25,11 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
     public long salary;
     public long fileEntryId;
     public String unit;
+    public long groupId;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(15);
 
         sb.append("{empId=");
         sb.append(empId);
@@ -42,6 +43,8 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
         sb.append(fileEntryId);
         sb.append(", unit=");
         sb.append(unit);
+        sb.append(", groupId=");
+        sb.append(groupId);
         sb.append("}");
 
         return sb.toString();
@@ -69,6 +72,8 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
             employeeImpl.setUnit(unit);
         }
 
+        employeeImpl.setGroupId(groupId);
+
         employeeImpl.resetOriginalValues();
 
         return employeeImpl;
@@ -82,6 +87,7 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
         salary = objectInput.readLong();
         fileEntryId = objectInput.readLong();
         unit = objectInput.readUTF();
+        groupId = objectInput.readLong();
     }
 
     @Override
@@ -104,5 +110,7 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
         } else {
             objectOutput.writeUTF(unit);
         }
+
+        objectOutput.writeLong(groupId);
     }
 }

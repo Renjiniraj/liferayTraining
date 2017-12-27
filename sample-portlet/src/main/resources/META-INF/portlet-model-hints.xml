@@ -1,35 +1,23 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="net.opentrends.training.model.Employee">
-		<field name="empId" type="long" />
-		<field name="employeeName" type="String" />
-		<field name="age" type="int" />
-		<field name="salary" type="long" />
-		<field name="fileEntryId" type="long" />
-		<field name="unit" type="String" />
+	<model name="net.opentrends.training.model.Department">
+		<field name="departmentid" type="long" />
+		<field name="deptName" type="String" />
 	</model>
-	<model name="net.opentrends.training.model.Foo">
-		<field name="uuid" type="String" />
-		<field name="fooId" type="long" />
-		<field name="groupId" type="long" />
-		<field name="companyId" type="long" />
+	<model name="net.opentrends.training.model.Marks">
+		<field name="marksid" type="long" />
+		<field name="rollNo" type="int" />
+		<field name="percentage" type="int" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
-		<field name="field1" type="String" />
-		<field name="field2" type="boolean" />
-		<field name="field3" type="int" />
-		<field name="field4" type="Date" />
-		<field name="field5" type="String" />
+		<field name="groupId" type="long" />
 	</model>
 	<model name="net.opentrends.training.model.Student">
 		<field name="studentid" type="long" />
-		<field name="fname" type="String" />
-		<field name="lname" type="String" />
-		<field name="age" type="int" />
-		<field name="branch" type="String" />
-		<field name="email" type="String" />
+		<field name="name" type="String" />
+		<field name="dept_id" type="long" />
+		<field name="rollNo" type="int" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
 	</model>
 </model-hints>

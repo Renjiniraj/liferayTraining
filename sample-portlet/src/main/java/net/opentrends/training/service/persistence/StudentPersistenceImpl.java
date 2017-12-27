@@ -321,11 +321,11 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
         studentImpl.setPrimaryKey(student.getPrimaryKey());
 
         studentImpl.setStudentid(student.getStudentid());
-        studentImpl.setFname(student.getFname());
-        studentImpl.setLname(student.getLname());
-        studentImpl.setAge(student.getAge());
-        studentImpl.setBranch(student.getBranch());
-        studentImpl.setEmail(student.getEmail());
+        studentImpl.setName(student.getName());
+        studentImpl.setDept_id(student.getDept_id());
+        studentImpl.setRollNo(student.getRollNo());
+        studentImpl.setUserId(student.getUserId());
+        studentImpl.setGroupId(student.getGroupId());
 
         return studentImpl;
     }

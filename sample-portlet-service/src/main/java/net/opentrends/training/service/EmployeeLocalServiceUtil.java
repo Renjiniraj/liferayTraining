@@ -261,6 +261,17 @@ public class EmployeeLocalServiceUtil {
         return getService().invokeMethod(name, parameterTypes, arguments);
     }
 
+    public static void addResource(long companyid, long groupid, long userid,
+        java.lang.String entityName, java.lang.String primekey,
+        boolean portletActions, boolean addGroupPermissions,
+        boolean addGuestPermissions)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        getService()
+            .addResource(companyid, groupid, userid, entityName, primekey,
+            portletActions, addGroupPermissions, addGuestPermissions);
+    }
+
     public static void clearService() {
         _service = null;
     }

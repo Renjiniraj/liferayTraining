@@ -5,8 +5,11 @@
 	<category name="category.sample">
 		<portlet id="sample" />
 		<portlet id="new"></portlet>
-		<portlet id="student"></portlet>
 		<portlet id="employee"></portlet>
-		<portlet id="role"></portlet>
+
+		<portlet id="friendly-url"></portlet>
+		<portlet id="webcontent"></portlet>
+		<portlet id="student-details"></portlet>
+		<portlet id="login"></portlet>
 	</category>
 </display>

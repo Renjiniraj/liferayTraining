@@ -19,6 +19,7 @@ public class EmployeeSoap implements Serializable {
     private long _salary;
     private long _fileEntryId;
     private String _unit;
+    private long _groupId;
 
     public EmployeeSoap() {
     }
@@ -32,6 +33,7 @@ public class EmployeeSoap implements Serializable {
         soapModel.setSalary(model.getSalary());
         soapModel.setFileEntryId(model.getFileEntryId());
         soapModel.setUnit(model.getUnit());
+        soapModel.setGroupId(model.getGroupId());
 
         return soapModel;
     }
@@ -126,5 +128,13 @@ public class EmployeeSoap implements Serializable {
 
     public void setUnit(String unit) {
         _unit = unit;
+    }
+
+    public long getGroupId() {
+        return _groupId;
+    }
+
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
     }
 }

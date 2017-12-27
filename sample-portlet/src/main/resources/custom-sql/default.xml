@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql >
+<sql file="resources/custom-sql/default.xml" />
+
+<sql id="net.opentrends.training.service.persistence.StudentFinder.findStudentDetails" >
+<![CDATA[
+
+
+SELECT
+  stud.name, dept.deptName, stud.rollNo, m.percentage,stud.studentid,dept.departmentid,m.marksid
+FROM  sample_Marks as m
+INNER JOIN sample_Student as stud
+ON stud.rollNo =  m.rollNo
+ INNER JOIN sample_Department as dept
+ON dept.departmentid = stud.dept_id where stud.groupId = ?
+  
+]]>
+</sql>
+
+</custom-sql >

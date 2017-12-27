@@ -9,30 +9,30 @@ import java.util.Arrays;
  * @generated
  */
 public class EmployeeServiceClpInvoker {
-    private String _methodName30;
-    private String[] _methodParameterTypes30;
-    private String _methodName31;
-    private String[] _methodParameterTypes31;
+    private String _methodName54;
+    private String[] _methodParameterTypes54;
+    private String _methodName55;
+    private String[] _methodParameterTypes55;
 
     public EmployeeServiceClpInvoker() {
-        _methodName30 = "getBeanIdentifier";
+        _methodName54 = "getBeanIdentifier";
 
-        _methodParameterTypes30 = new String[] {  };
+        _methodParameterTypes54 = new String[] {  };
 
-        _methodName31 = "setBeanIdentifier";
+        _methodName55 = "setBeanIdentifier";
 
-        _methodParameterTypes31 = new String[] { "java.lang.String" };
+        _methodParameterTypes55 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
         Object[] arguments) throws Throwable {
-        if (_methodName30.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+        if (_methodName54.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
             return EmployeeServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName31.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+        if (_methodName55.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
             EmployeeServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;

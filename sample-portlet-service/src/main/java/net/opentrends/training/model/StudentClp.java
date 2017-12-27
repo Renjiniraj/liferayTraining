@@ -6,6 +6,7 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import net.opentrends.training.service.ClpSerializer;
 import net.opentrends.training.service.StudentLocalServiceUtil;
@@ -20,11 +21,12 @@ import java.util.Map;
 
 public class StudentClp extends BaseModelImpl<Student> implements Student {
     private long _studentid;
-    private String _fname;
-    private String _lname;
-    private int _age;
-    private String _branch;
-    private String _email;
+    private String _name;
+    private long _dept_id;
+    private int _rollNo;
+    private long _userId;
+    private String _userUuid;
+    private long _groupId;
     private BaseModel<?> _studentRemoteModel;
     private Class<?> _clpSerializerClass = net.opentrends.training.service.ClpSerializer.class;
 
@@ -66,11 +68,11 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("studentid", getStudentid());
-        attributes.put("fname", getFname());
-        attributes.put("lname", getLname());
-        attributes.put("age", getAge());
-        attributes.put("branch", getBranch());
-        attributes.put("email", getEmail());
+        attributes.put("name", getName());
+        attributes.put("dept_id", getDept_id());
+        attributes.put("rollNo", getRollNo());
+        attributes.put("userId", getUserId());
+        attributes.put("groupId", getGroupId());
 
         return attributes;
     }
@@ -83,34 +85,34 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
             setStudentid(studentid);
         }
 
-        String fname = (String) attributes.get("fname");
+        String name = (String) attributes.get("name");
 
-        if (fname != null) {
-            setFname(fname);
+        if (name != null) {
+            setName(name);
         }
 
-        String lname = (String) attributes.get("lname");
+        Long dept_id = (Long) attributes.get("dept_id");
 
-        if (lname != null) {
-            setLname(lname);
+        if (dept_id != null) {
+            setDept_id(dept_id);
         }
 
-        Integer age = (Integer) attributes.get("age");
+        Integer rollNo = (Integer) attributes.get("rollNo");
 
-        if (age != null) {
-            setAge(age);
+        if (rollNo != null) {
+            setRollNo(rollNo);
         }
 
-        String branch = (String) attributes.get("branch");
+        Long userId = (Long) attributes.get("userId");
 
-        if (branch != null) {
-            setBranch(branch);
+        if (userId != null) {
+            setUserId(userId);
         }
 
-        String email = (String) attributes.get("email");
+        Long groupId = (Long) attributes.get("groupId");
 
-        if (email != null) {
-            setEmail(email);
+        if (groupId != null) {
+            setGroupId(groupId);
         }
     }
 
@@ -137,21 +139,21 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
     }
 
     @Override
-    public String getFname() {
-        return _fname;
+    public String getName() {
+        return _name;
     }
 
     @Override
-    public void setFname(String fname) {
-        _fname = fname;
+    public void setName(String name) {
+        _name = name;
 
         if (_studentRemoteModel != null) {
             try {
                 Class<?> clazz = _studentRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setFname", String.class);
+                Method method = clazz.getMethod("setName", String.class);
 
-                method.invoke(_studentRemoteModel, fname);
+                method.invoke(_studentRemoteModel, name);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -159,21 +161,21 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
     }
 
     @Override
-    public String getLname() {
-        return _lname;
+    public long getDept_id() {
+        return _dept_id;
     }
 
     @Override
-    public void setLname(String lname) {
-        _lname = lname;
+    public void setDept_id(long dept_id) {
+        _dept_id = dept_id;
 
         if (_studentRemoteModel != null) {
             try {
                 Class<?> clazz = _studentRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setLname", String.class);
+                Method method = clazz.getMethod("setDept_id", long.class);
 
-                method.invoke(_studentRemoteModel, lname);
+                method.invoke(_studentRemoteModel, dept_id);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -181,21 +183,21 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
     }
 
     @Override
-    public int getAge() {
-        return _age;
+    public int getRollNo() {
+        return _rollNo;
     }
 
     @Override
-    public void setAge(int age) {
-        _age = age;
+    public void setRollNo(int rollNo) {
+        _rollNo = rollNo;
 
         if (_studentRemoteModel != null) {
             try {
                 Class<?> clazz = _studentRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setAge", int.class);
+                Method method = clazz.getMethod("setRollNo", int.class);
 
-                method.invoke(_studentRemoteModel, age);
+                method.invoke(_studentRemoteModel, rollNo);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -203,21 +205,21 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
     }
 
     @Override
-    public String getBranch() {
-        return _branch;
+    public long getUserId() {
+        return _userId;
     }
 
     @Override
-    public void setBranch(String branch) {
-        _branch = branch;
+    public void setUserId(long userId) {
+        _userId = userId;
 
         if (_studentRemoteModel != null) {
             try {
                 Class<?> clazz = _studentRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setBranch", String.class);
+                Method method = clazz.getMethod("setUserId", long.class);
 
-                method.invoke(_studentRemoteModel, branch);
+                method.invoke(_studentRemoteModel, userId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -225,21 +227,31 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
     }
 
     @Override
-    public String getEmail() {
-        return _email;
+    public String getUserUuid() throws SystemException {
+        return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
     }
 
     @Override
-    public void setEmail(String email) {
-        _email = email;
+    public void setUserUuid(String userUuid) {
+        _userUuid = userUuid;
+    }
+
+    @Override
+    public long getGroupId() {
+        return _groupId;
+    }
+
+    @Override
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
 
         if (_studentRemoteModel != null) {
             try {
                 Class<?> clazz = _studentRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setEmail", String.class);
+                Method method = clazz.getMethod("setGroupId", long.class);
 
-                method.invoke(_studentRemoteModel, email);
+                method.invoke(_studentRemoteModel, groupId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -314,11 +326,11 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
         StudentClp clone = new StudentClp();
 
         clone.setStudentid(getStudentid());
-        clone.setFname(getFname());
-        clone.setLname(getLname());
-        clone.setAge(getAge());
-        clone.setBranch(getBranch());
-        clone.setEmail(getEmail());
+        clone.setName(getName());
+        clone.setDept_id(getDept_id());
+        clone.setRollNo(getRollNo());
+        clone.setUserId(getUserId());
+        clone.setGroupId(getGroupId());
 
         return clone;
     }
@@ -372,16 +384,16 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
 
         sb.append("{studentid=");
         sb.append(getStudentid());
-        sb.append(", fname=");
-        sb.append(getFname());
-        sb.append(", lname=");
-        sb.append(getLname());
-        sb.append(", age=");
-        sb.append(getAge());
-        sb.append(", branch=");
-        sb.append(getBranch());
-        sb.append(", email=");
-        sb.append(getEmail());
+        sb.append(", name=");
+        sb.append(getName());
+        sb.append(", dept_id=");
+        sb.append(getDept_id());
+        sb.append(", rollNo=");
+        sb.append(getRollNo());
+        sb.append(", userId=");
+        sb.append(getUserId());
+        sb.append(", groupId=");
+        sb.append(getGroupId());
         sb.append("}");
 
         return sb.toString();
@@ -400,24 +412,24 @@ public class StudentClp extends BaseModelImpl<Student> implements Student {
         sb.append(getStudentid());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>fname</column-name><column-value><![CDATA[");
-        sb.append(getFname());
+            "<column><column-name>name</column-name><column-value><![CDATA[");
+        sb.append(getName());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>lname</column-name><column-value><![CDATA[");
-        sb.append(getLname());
+            "<column><column-name>dept_id</column-name><column-value><![CDATA[");
+        sb.append(getDept_id());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>age</column-name><column-value><![CDATA[");
-        sb.append(getAge());
+            "<column><column-name>rollNo</column-name><column-value><![CDATA[");
+        sb.append(getRollNo());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>branch</column-name><column-value><![CDATA[");
-        sb.append(getBranch());
+            "<column><column-name>userId</column-name><column-value><![CDATA[");
+        sb.append(getUserId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>email</column-name><column-value><![CDATA[");
-        sb.append(getEmail());
+            "<column><column-name>groupId</column-name><column-value><![CDATA[");
+        sb.append(getGroupId());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

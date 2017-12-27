@@ -268,6 +268,13 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
         return _studentLocalService.invokeMethod(name, parameterTypes, arguments);
     }
 
+    @Override
+    public java.util.List<java.lang.Object[]> findByGroupId(long groupId,
+        int begin, int end)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _studentLocalService.findByGroupId(groupId, begin, end);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

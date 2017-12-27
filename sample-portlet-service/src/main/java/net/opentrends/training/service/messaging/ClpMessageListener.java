@@ -4,10 +4,10 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 import net.opentrends.training.service.ClpSerializer;
-import net.opentrends.training.service.EmployeeLocalServiceUtil;
-import net.opentrends.training.service.EmployeeServiceUtil;
-import net.opentrends.training.service.FooLocalServiceUtil;
-import net.opentrends.training.service.FooServiceUtil;
+import net.opentrends.training.service.DepartmentLocalServiceUtil;
+import net.opentrends.training.service.DepartmentServiceUtil;
+import net.opentrends.training.service.MarksLocalServiceUtil;
+import net.opentrends.training.service.MarksServiceUtil;
 import net.opentrends.training.service.StudentLocalServiceUtil;
 import net.opentrends.training.service.StudentServiceUtil;
 
@@ -24,12 +24,12 @@ public class ClpMessageListener extends BaseMessageListener {
 
         if (command.equals("undeploy") &&
                 servletContextName.equals(getServletContextName())) {
-            EmployeeLocalServiceUtil.clearService();
+            DepartmentLocalServiceUtil.clearService();
 
-            EmployeeServiceUtil.clearService();
-            FooLocalServiceUtil.clearService();
+            DepartmentServiceUtil.clearService();
+            MarksLocalServiceUtil.clearService();
 
-            FooServiceUtil.clearService();
+            MarksServiceUtil.clearService();
             StudentLocalServiceUtil.clearService();
 
             StudentServiceUtil.clearService();

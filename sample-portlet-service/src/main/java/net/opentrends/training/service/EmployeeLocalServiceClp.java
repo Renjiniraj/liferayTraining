@@ -44,6 +44,8 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
     private String[] _methodParameterTypes16;
     private String _methodName17;
     private String[] _methodParameterTypes17;
+    private String _methodName19;
+    private String[] _methodParameterTypes19;
 
     public EmployeeLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -137,6 +139,13 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
         _methodName17 = "setBeanIdentifier";
 
         _methodParameterTypes17 = new String[] { "java.lang.String" };
+
+        _methodName19 = "addResource";
+
+        _methodParameterTypes19 = new String[] {
+                "long", "long", "long", "java.lang.String", "java.lang.String",
+                "boolean", "boolean", "boolean"
+            };
     }
 
     @Override
@@ -647,5 +656,52 @@ public class EmployeeLocalServiceClp implements EmployeeLocalService {
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void addResource(long companyid, long groupid, long userid,
+        java.lang.String entityName, java.lang.String primekey,
+        boolean portletActions, boolean addGroupPermissions,
+        boolean addGuestPermissions)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        try {
+            _invokableLocalService.invokeMethod(_methodName19,
+                _methodParameterTypes19,
+                new Object[] {
+                    companyid,
+                    
+                groupid,
+                    
+                userid,
+                    
+                ClpSerializer.translateInput(entityName),
+                    
+                ClpSerializer.translateInput(primekey),
+                    
+                portletActions,
+                    
+                addGroupPermissions,
+                    
+                addGuestPermissions
+                });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
     }
 }

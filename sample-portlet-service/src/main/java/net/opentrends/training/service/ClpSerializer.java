@@ -11,8 +11,8 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
-import net.opentrends.training.model.EmployeeClp;
-import net.opentrends.training.model.FooClp;
+import net.opentrends.training.model.DepartmentClp;
+import net.opentrends.training.model.MarksClp;
 import net.opentrends.training.model.StudentClp;
 
 import java.io.ObjectInputStream;
@@ -90,12 +90,12 @@ public class ClpSerializer {
 
         String oldModelClassName = oldModelClass.getName();
 
-        if (oldModelClassName.equals(EmployeeClp.class.getName())) {
-            return translateInputEmployee(oldModel);
+        if (oldModelClassName.equals(DepartmentClp.class.getName())) {
+            return translateInputDepartment(oldModel);
         }
 
-        if (oldModelClassName.equals(FooClp.class.getName())) {
-            return translateInputFoo(oldModel);
+        if (oldModelClassName.equals(MarksClp.class.getName())) {
+            return translateInputMarks(oldModel);
         }
 
         if (oldModelClassName.equals(StudentClp.class.getName())) {
@@ -117,20 +117,20 @@ public class ClpSerializer {
         return newList;
     }
 
-    public static Object translateInputEmployee(BaseModel<?> oldModel) {
-        EmployeeClp oldClpModel = (EmployeeClp) oldModel;
+    public static Object translateInputDepartment(BaseModel<?> oldModel) {
+        DepartmentClp oldClpModel = (DepartmentClp) oldModel;
 
-        BaseModel<?> newModel = oldClpModel.getEmployeeRemoteModel();
+        BaseModel<?> newModel = oldClpModel.getDepartmentRemoteModel();
 
         newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
         return newModel;
     }
 
-    public static Object translateInputFoo(BaseModel<?> oldModel) {
-        FooClp oldClpModel = (FooClp) oldModel;
+    public static Object translateInputMarks(BaseModel<?> oldModel) {
+        MarksClp oldClpModel = (MarksClp) oldModel;
 
-        BaseModel<?> newModel = oldClpModel.getFooRemoteModel();
+        BaseModel<?> newModel = oldClpModel.getMarksRemoteModel();
 
         newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -163,8 +163,8 @@ public class ClpSerializer {
         String oldModelClassName = oldModelClass.getName();
 
         if (oldModelClassName.equals(
-                    "net.opentrends.training.model.impl.EmployeeImpl")) {
-            return translateOutputEmployee(oldModel);
+                    "net.opentrends.training.model.impl.DepartmentImpl")) {
+            return translateOutputDepartment(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
                 ClassLoader classLoader = ClpSerializer.class.getClassLoader();
@@ -198,8 +198,8 @@ public class ClpSerializer {
         }
 
         if (oldModelClassName.equals(
-                    "net.opentrends.training.model.impl.FooImpl")) {
-            return translateOutputFoo(oldModel);
+                    "net.opentrends.training.model.impl.MarksImpl")) {
+            return translateOutputMarks(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
                 ClassLoader classLoader = ClpSerializer.class.getClassLoader();
@@ -343,12 +343,13 @@ public class ClpSerializer {
             return new SystemException();
         }
 
-        if (className.equals("net.opentrends.training.NoSuchEmployeeException")) {
-            return new net.opentrends.training.NoSuchEmployeeException();
+        if (className.equals(
+                    "net.opentrends.training.NoSuchDepartmentException")) {
+            return new net.opentrends.training.NoSuchDepartmentException();
         }
 
-        if (className.equals("net.opentrends.training.NoSuchFooException")) {
-            return new net.opentrends.training.NoSuchFooException();
+        if (className.equals("net.opentrends.training.NoSuchMarksException")) {
+            return new net.opentrends.training.NoSuchMarksException();
         }
 
         if (className.equals("net.opentrends.training.NoSuchStudentException")) {
@@ -358,22 +359,22 @@ public class ClpSerializer {
         return throwable;
     }
 
-    public static Object translateOutputEmployee(BaseModel<?> oldModel) {
-        EmployeeClp newModel = new EmployeeClp();
+    public static Object translateOutputDepartment(BaseModel<?> oldModel) {
+        DepartmentClp newModel = new DepartmentClp();
 
         newModel.setModelAttributes(oldModel.getModelAttributes());
 
-        newModel.setEmployeeRemoteModel(oldModel);
+        newModel.setDepartmentRemoteModel(oldModel);
 
         return newModel;
     }
 
-    public static Object translateOutputFoo(BaseModel<?> oldModel) {
-        FooClp newModel = new FooClp();
+    public static Object translateOutputMarks(BaseModel<?> oldModel) {
+        MarksClp newModel = new MarksClp();
 
         newModel.setModelAttributes(oldModel.getModelAttributes());
 
-        newModel.setFooRemoteModel(oldModel);
+        newModel.setMarksRemoteModel(oldModel);
 
         return newModel;
     }

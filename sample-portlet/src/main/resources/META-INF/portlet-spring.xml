@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="net.opentrends.training.service.EmployeeLocalService" class="net.opentrends.training.service.impl.EmployeeLocalServiceImpl" />
-	<bean id="net.opentrends.training.service.EmployeeService" class="net.opentrends.training.service.impl.EmployeeServiceImpl" />
-	<bean id="net.opentrends.training.service.persistence.EmployeePersistence" class="net.opentrends.training.service.persistence.EmployeePersistenceImpl" parent="basePersistence" />
-	<bean id="net.opentrends.training.service.FooLocalService" class="net.opentrends.training.service.impl.FooLocalServiceImpl" />
-	<bean id="net.opentrends.training.service.FooService" class="net.opentrends.training.service.impl.FooServiceImpl" />
-	<bean id="net.opentrends.training.service.persistence.FooPersistence" class="net.opentrends.training.service.persistence.FooPersistenceImpl" parent="basePersistence" />
+	<bean id="net.opentrends.training.service.DepartmentLocalService" class="net.opentrends.training.service.impl.DepartmentLocalServiceImpl" />
+	<bean id="net.opentrends.training.service.DepartmentService" class="net.opentrends.training.service.impl.DepartmentServiceImpl" />
+	<bean id="net.opentrends.training.service.persistence.DepartmentPersistence" class="net.opentrends.training.service.persistence.DepartmentPersistenceImpl" parent="basePersistence" />
+	<bean id="net.opentrends.training.service.MarksLocalService" class="net.opentrends.training.service.impl.MarksLocalServiceImpl" />
+	<bean id="net.opentrends.training.service.MarksService" class="net.opentrends.training.service.impl.MarksServiceImpl" />
+	<bean id="net.opentrends.training.service.persistence.MarksPersistence" class="net.opentrends.training.service.persistence.MarksPersistenceImpl" parent="basePersistence" />
 	<bean id="net.opentrends.training.service.StudentLocalService" class="net.opentrends.training.service.impl.StudentLocalServiceImpl" />
 	<bean id="net.opentrends.training.service.StudentService" class="net.opentrends.training.service.impl.StudentServiceImpl" />
 	<bean id="net.opentrends.training.service.persistence.StudentPersistence" class="net.opentrends.training.service.persistence.StudentPersistenceImpl" parent="basePersistence" />
+	<bean id="net.opentrends.training.service.persistence.StudentFinder" class="net.opentrends.training.service.persistence.StudentFinderImpl" parent="basePersistence" />
 </beans>

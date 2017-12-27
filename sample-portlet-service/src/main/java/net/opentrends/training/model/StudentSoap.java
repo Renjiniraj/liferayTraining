@@ -14,11 +14,11 @@ import java.util.List;
  */
 public class StudentSoap implements Serializable {
     private long _studentid;
-    private String _fname;
-    private String _lname;
-    private int _age;
-    private String _branch;
-    private String _email;
+    private String _name;
+    private long _dept_id;
+    private int _rollNo;
+    private long _userId;
+    private long _groupId;
 
     public StudentSoap() {
     }
@@ -27,11 +27,11 @@ public class StudentSoap implements Serializable {
         StudentSoap soapModel = new StudentSoap();
 
         soapModel.setStudentid(model.getStudentid());
-        soapModel.setFname(model.getFname());
-        soapModel.setLname(model.getLname());
-        soapModel.setAge(model.getAge());
-        soapModel.setBranch(model.getBranch());
-        soapModel.setEmail(model.getEmail());
+        soapModel.setName(model.getName());
+        soapModel.setDept_id(model.getDept_id());
+        soapModel.setRollNo(model.getRollNo());
+        soapModel.setUserId(model.getUserId());
+        soapModel.setGroupId(model.getGroupId());
 
         return soapModel;
     }
@@ -88,43 +88,43 @@ public class StudentSoap implements Serializable {
         _studentid = studentid;
     }
 
-    public String getFname() {
-        return _fname;
+    public String getName() {
+        return _name;
     }
 
-    public void setFname(String fname) {
-        _fname = fname;
+    public void setName(String name) {
+        _name = name;
     }
 
-    public String getLname() {
-        return _lname;
+    public long getDept_id() {
+        return _dept_id;
     }
 
-    public void setLname(String lname) {
-        _lname = lname;
+    public void setDept_id(long dept_id) {
+        _dept_id = dept_id;
     }
 
-    public int getAge() {
-        return _age;
+    public int getRollNo() {
+        return _rollNo;
     }
 
-    public void setAge(int age) {
-        _age = age;
+    public void setRollNo(int rollNo) {
+        _rollNo = rollNo;
     }
 
-    public String getBranch() {
-        return _branch;
+    public long getUserId() {
+        return _userId;
     }
 
-    public void setBranch(String branch) {
-        _branch = branch;
+    public void setUserId(long userId) {
+        _userId = userId;
     }
 
-    public String getEmail() {
-        return _email;
+    public long getGroupId() {
+        return _groupId;
     }
 
-    public void setEmail(String email) {
-        _email = email;
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
     }
 }

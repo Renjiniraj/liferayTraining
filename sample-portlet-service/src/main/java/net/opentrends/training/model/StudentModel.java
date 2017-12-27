@@ -1,6 +1,7 @@
 package net.opentrends.training.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -58,78 +59,90 @@ public interface StudentModel extends BaseModel<Student> {
     public void setStudentid(long studentid);
 
     /**
-     * Returns the fname of this student.
+     * Returns the name of this student.
      *
-     * @return the fname of this student
+     * @return the name of this student
      */
     @AutoEscape
-    public String getFname();
+    public String getName();
 
     /**
-     * Sets the fname of this student.
+     * Sets the name of this student.
      *
-     * @param fname the fname of this student
+     * @param name the name of this student
      */
-    public void setFname(String fname);
+    public void setName(String name);
 
     /**
-     * Returns the lname of this student.
+     * Returns the dept_id of this student.
      *
-     * @return the lname of this student
+     * @return the dept_id of this student
      */
-    @AutoEscape
-    public String getLname();
+    public long getDept_id();
 
     /**
-     * Sets the lname of this student.
+     * Sets the dept_id of this student.
      *
-     * @param lname the lname of this student
+     * @param dept_id the dept_id of this student
      */
-    public void setLname(String lname);
+    public void setDept_id(long dept_id);
 
     /**
-     * Returns the age of this student.
+     * Returns the roll no of this student.
      *
-     * @return the age of this student
+     * @return the roll no of this student
      */
-    public int getAge();
+    public int getRollNo();
 
     /**
-     * Sets the age of this student.
+     * Sets the roll no of this student.
      *
-     * @param age the age of this student
+     * @param rollNo the roll no of this student
      */
-    public void setAge(int age);
+    public void setRollNo(int rollNo);
 
     /**
-     * Returns the branch of this student.
+     * Returns the user ID of this student.
      *
-     * @return the branch of this student
+     * @return the user ID of this student
      */
-    @AutoEscape
-    public String getBranch();
+    public long getUserId();
 
     /**
-     * Sets the branch of this student.
+     * Sets the user ID of this student.
      *
-     * @param branch the branch of this student
+     * @param userId the user ID of this student
      */
-    public void setBranch(String branch);
+    public void setUserId(long userId);
 
     /**
-     * Returns the email of this student.
+     * Returns the user uuid of this student.
      *
-     * @return the email of this student
+     * @return the user uuid of this student
+     * @throws SystemException if a system exception occurred
      */
-    @AutoEscape
-    public String getEmail();
+    public String getUserUuid() throws SystemException;
 
     /**
-     * Sets the email of this student.
+     * Sets the user uuid of this student.
      *
-     * @param email the email of this student
+     * @param userUuid the user uuid of this student
      */
-    public void setEmail(String email);
+    public void setUserUuid(String userUuid);
+
+    /**
+     * Returns the group ID of this student.
+     *
+     * @return the group ID of this student
+     */
+    public long getGroupId();
+
+    /**
+     * Sets the group ID of this student.
+     *
+     * @param groupId the group ID of this student
+     */
+    public void setGroupId(long groupId);
 
     @Override
     public boolean isNew();

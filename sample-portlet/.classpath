@@ -28,5 +28,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/renjiniraj/Downloads/jstl-standard.jar.zip"/>
+	<classpathentry kind="lib" path="/home/renjiniraj/Downloads/poi-3.7.jar.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -49,10 +49,10 @@ public class FooLocalServiceClpInvoker {
     private String[] _methodParameterTypes18;
     private String _methodName19;
     private String[] _methodParameterTypes19;
-    private String _methodName62;
-    private String[] _methodParameterTypes62;
-    private String _methodName63;
-    private String[] _methodParameterTypes63;
+    private String _methodName86;
+    private String[] _methodParameterTypes86;
+    private String _methodName87;
+    private String[] _methodParameterTypes87;
 
     public FooLocalServiceClpInvoker() {
         _methodName0 = "addFoo";
@@ -153,13 +153,13 @@ public class FooLocalServiceClpInvoker {
                 "net.opentrends.training.model.Foo"
             };
 
-        _methodName62 = "getBeanIdentifier";
+        _methodName86 = "getBeanIdentifier";
 
-        _methodParameterTypes62 = new String[] {  };
+        _methodParameterTypes86 = new String[] {  };
 
-        _methodName63 = "setBeanIdentifier";
+        _methodName87 = "setBeanIdentifier";
 
-        _methodParameterTypes63 = new String[] { "java.lang.String" };
+        _methodParameterTypes87 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -275,13 +275,13 @@ public class FooLocalServiceClpInvoker {
             return FooLocalServiceUtil.updateFoo((net.opentrends.training.model.Foo) arguments[0]);
         }
 
-        if (_methodName62.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+        if (_methodName86.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
             return FooLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName63.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+        if (_methodName87.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
             FooLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;

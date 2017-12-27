@@ -129,6 +129,20 @@ public interface EmployeeModel extends BaseModel<Employee> {
      */
     public void setUnit(String unit);
 
+    /**
+     * Returns the group ID of this employee.
+     *
+     * @return the group ID of this employee
+     */
+    public long getGroupId();
+
+    /**
+     * Sets the group ID of this employee.
+     *
+     * @param groupId the group ID of this employee
+     */
+    public void setGroupId(long groupId);
+
     @Override
     public boolean isNew();
 

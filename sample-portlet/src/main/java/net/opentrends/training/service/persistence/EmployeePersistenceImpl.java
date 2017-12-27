@@ -326,6 +326,7 @@ public class EmployeePersistenceImpl extends BasePersistenceImpl<Employee>
         employeeImpl.setSalary(employee.getSalary());
         employeeImpl.setFileEntryId(employee.getFileEntryId());
         employeeImpl.setUnit(employee.getUnit());
+        employeeImpl.setGroupId(employee.getGroupId());
 
         return employeeImpl;
     }

@@ -20,11 +20,11 @@ import java.io.ObjectOutput;
  */
 public class StudentCacheModel implements CacheModel<Student>, Externalizable {
     public long studentid;
-    public String fname;
-    public String lname;
-    public int age;
-    public String branch;
-    public String email;
+    public String name;
+    public long dept_id;
+    public int rollNo;
+    public long userId;
+    public long groupId;
 
     @Override
     public String toString() {
@@ -32,16 +32,16 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
         sb.append("{studentid=");
         sb.append(studentid);
-        sb.append(", fname=");
-        sb.append(fname);
-        sb.append(", lname=");
-        sb.append(lname);
-        sb.append(", age=");
-        sb.append(age);
-        sb.append(", branch=");
-        sb.append(branch);
-        sb.append(", email=");
-        sb.append(email);
+        sb.append(", name=");
+        sb.append(name);
+        sb.append(", dept_id=");
+        sb.append(dept_id);
+        sb.append(", rollNo=");
+        sb.append(rollNo);
+        sb.append(", userId=");
+        sb.append(userId);
+        sb.append(", groupId=");
+        sb.append(groupId);
         sb.append("}");
 
         return sb.toString();
@@ -53,31 +53,16 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
         studentImpl.setStudentid(studentid);
 
-        if (fname == null) {
-            studentImpl.setFname(StringPool.BLANK);
+        if (name == null) {
+            studentImpl.setName(StringPool.BLANK);
         } else {
-            studentImpl.setFname(fname);
+            studentImpl.setName(name);
         }
 
-        if (lname == null) {
-            studentImpl.setLname(StringPool.BLANK);
-        } else {
-            studentImpl.setLname(lname);
-        }
-
-        studentImpl.setAge(age);
-
-        if (branch == null) {
-            studentImpl.setBranch(StringPool.BLANK);
-        } else {
-            studentImpl.setBranch(branch);
-        }
-
-        if (email == null) {
-            studentImpl.setEmail(StringPool.BLANK);
-        } else {
-            studentImpl.setEmail(email);
-        }
+        studentImpl.setDept_id(dept_id);
+        studentImpl.setRollNo(rollNo);
+        studentImpl.setUserId(userId);
+        studentImpl.setGroupId(groupId);
 
         studentImpl.resetOriginalValues();
 
@@ -87,11 +72,11 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
         studentid = objectInput.readLong();
-        fname = objectInput.readUTF();
-        lname = objectInput.readUTF();
-        age = objectInput.readInt();
-        branch = objectInput.readUTF();
-        email = objectInput.readUTF();
+        name = objectInput.readUTF();
+        dept_id = objectInput.readLong();
+        rollNo = objectInput.readInt();
+        userId = objectInput.readLong();
+        groupId = objectInput.readLong();
     }
 
     @Override
@@ -99,30 +84,15 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
         throws IOException {
         objectOutput.writeLong(studentid);
 
-        if (fname == null) {
+        if (name == null) {
             objectOutput.writeUTF(StringPool.BLANK);
         } else {
-            objectOutput.writeUTF(fname);
+            objectOutput.writeUTF(name);
         }
 
-        if (lname == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(lname);
-        }
-
-        objectOutput.writeInt(age);
-
-        if (branch == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(branch);
-        }
-
-        if (email == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(email);
-        }
+        objectOutput.writeLong(dept_id);
+        objectOutput.writeInt(rollNo);
+        objectOutput.writeLong(userId);
+        objectOutput.writeLong(groupId);
     }
 }

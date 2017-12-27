@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 6.2.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_6_2_0.dtd">
+
+<resource-action-mapping>
+   
+<portlet-resource>
+    <portlet-name>student-details</portlet-name>
+    <permissions>
+        <supports>
+            <action-key>ADD_STUDENT</action-key>
+             <action-key>ADD_DEPARTMENT</action-key>
+            <action-key>ADD_MARKS</action-key>           
+             <action-key>CONFIGURATION</action-key>
+            <action-key>VIEW</action-key>
+        </supports>
+        <site-member-defaults>
+            <action-key>VIEW</action-key>
+        </site-member-defaults>
+        <guest-defaults>
+            <action-key>VIEW</action-key>
+        </guest-defaults>
+        <guest-unsupported />
+    </permissions>
+</portlet-resource>
+
+<model-resource>
+    <model-name>net.opentrends.training.model</model-name>
+    <portlet-ref>
+        <portlet-name>student-details</portlet-name>
+    </portlet-ref>
+    <permissions>
+        <supports>
+            <action-key>ADD_STUDENT</action-key>
+            <action-key>ADD_DEPARTMENT</action-key>
+            <action-key>ADD_MARKS</action-key>
+            
+        </supports>
+        <site-member-defaults>
+            <action-key>ADD</action-key>
+        </site-member-defaults>
+        <guest-defaults />
+        <guest-unsupported>
+            <action-key>ADD</action-key>
+        </guest-unsupported>
+    </permissions>
+</model-resource> 
+
+<model-resource>
+    <model-name>net.opentrends.training.model.Student</model-name>
+    <portlet-ref>
+        <portlet-name>Student Details</portlet-name>
+    </portlet-ref>
+    <permissions>
+        <supports>
+            <action-key>ADD_STUDENT</action-key>
+            <action-key>DELETE</action-key>
+            <action-key>UPDATE</action-key>
+            <action-key>VIEW</action-key>
+        </supports>
+        <site-member-defaults>
+            <action-key>ADD</action-key>
+            <action-key>VIEW</action-key>
+        </site-member-defaults>
+        <guest-defaults>
+            <action-key>VIEW</action-key>
+        </guest-defaults>
+        <guest-unsupported>
+            <action-key>UPDATE</action-key>
+        </guest-unsupported>
+    </permissions>
+</model-resource>
+
+<model-resource>
+    <model-name>net.opentrends.training.model.Department</model-name>
+    <portlet-ref>
+        <portlet-name>student-details</portlet-name>
+    </portlet-ref>
+    <permissions>
+        <supports>
+            <action-key>ADD_DEPARTMENT</action-key>
+            <action-key>DELETE</action-key>
+            <action-key>UPDATE</action-key>
+            <action-key>VIEW</action-key>
+        </supports>
+        <site-member-defaults>
+            <action-key>ADD</action-key>
+            <action-key>VIEW</action-key>
+        </site-member-defaults>
+        <guest-defaults>
+            <action-key>VIEW</action-key>
+        </guest-defaults>
+        <guest-unsupported>
+            <action-key>UPDATE</action-key>
+        </guest-unsupported>
+    </permissions>
+</model-resource>
+
+<model-resource>
+    <model-name>net.opentrends.training.model.Marks</model-name>
+    <portlet-ref>
+        <portlet-name>student-details</portlet-name>
+    </portlet-ref>
+    <permissions>
+        <supports>
+            <action-key>ADD_MARKS</action-key>
+            <action-key>DELETE</action-key>
+            <action-key>UPDATE</action-key>
+            <action-key>VIEW</action-key>
+        </supports>
+        <site-member-defaults>
+            <action-key>ADD</action-key>
+            <action-key>VIEW</action-key>
+        </site-member-defaults>
+        <guest-defaults>
+            <action-key>VIEW</action-key>
+        </guest-defaults>
+        <guest-unsupported>
+            <action-key>UPDATE</action-key>
+        </guest-unsupported>
+    </permissions>
+</model-resource>
+
+<model-resource>
+    <model-name>net.opentrends.training.model.Employee</model-name>
+    <portlet-ref>
+        <portlet-name>student-details</portlet-name>
+    </portlet-ref>
+    <permissions>
+        <supports>
+            <action-key>ADD_STUDENT</action-key>
+            <action-key>ADD_DEPARTMENT</action-key>
+            <action-key>ADD_MARKS</action-key>
+            
+        </supports>
+        <site-member-defaults>
+            <action-key>ADD</action-key>
+        </site-member-defaults>
+        <guest-defaults />
+        <guest-unsupported>
+            <action-key>ADD</action-key>
+        </guest-unsupported>
+    </permissions>
+</model-resource> 
+
+
+</resource-action-mapping>

@@ -42,6 +42,7 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
         attributes.put("salary", getSalary());
         attributes.put("fileEntryId", getFileEntryId());
         attributes.put("unit", getUnit());
+        attributes.put("groupId", getGroupId());
 
         return attributes;
     }
@@ -82,6 +83,12 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
 
         if (unit != null) {
             setUnit(unit);
+        }
+
+        Long groupId = (Long) attributes.get("groupId");
+
+        if (groupId != null) {
+            setGroupId(groupId);
         }
     }
 
@@ -223,6 +230,26 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
     @Override
     public void setUnit(java.lang.String unit) {
         _employee.setUnit(unit);
+    }
+
+    /**
+    * Returns the group ID of this employee.
+    *
+    * @return the group ID of this employee
+    */
+    @Override
+    public long getGroupId() {
+        return _employee.getGroupId();
+    }
+
+    /**
+    * Sets the group ID of this employee.
+    *
+    * @param groupId the group ID of this employee
+    */
+    @Override
+    public void setGroupId(long groupId) {
+        _employee.setGroupId(groupId);
     }
 
     @Override

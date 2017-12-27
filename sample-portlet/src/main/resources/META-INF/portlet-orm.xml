@@ -7,42 +7,22 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="net.opentrends.training.model.impl.EmployeeModelImpl">
+	<mapped-superclass class="net.opentrends.training.model.impl.DepartmentModelImpl">
 		<attributes>
-			<id name="empId" />
-			<basic name="employeeName" />
-			<basic name="age" />
-			<basic name="salary" />
-			<basic name="fileEntryId" />
-			<basic name="unit" />
+			<id name="departmentid" />
+			<basic name="deptName" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="net.opentrends.training.model.impl.FooModelImpl">
+	<mapped-superclass class="net.opentrends.training.model.impl.MarksModelImpl">
 		<attributes>
-			<id name="fooId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="groupId" />
-			<basic name="companyId" />
+			<id name="marksid" />
+			<basic name="rollNo" />
+			<basic name="percentage" />
 			<basic name="userId" />
-			<basic name="userName" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="field1" />
-			<basic name="field2" />
-			<basic name="field3" />
-			<basic name="field4">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="field5" />
+			<basic name="groupId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -52,22 +32,23 @@
 	<mapped-superclass class="net.opentrends.training.model.impl.StudentModelImpl">
 		<attributes>
 			<id name="studentid" />
-			<basic name="fname" />
-			<basic name="lname" />
-			<basic name="age" />
-			<basic name="branch" />
-			<basic name="email" />
+			<basic name="name" />
+			<basic name="dept_id" />
+			<basic name="rollNo" />
+			<basic name="userId" />
+			<basic name="groupId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="net.opentrends.training.model.impl.EmployeeImpl" name="Employee">
-		<table name="sample_Employee" />
+	<entity class="net.opentrends.training.model.impl.DepartmentImpl" name="Department">
+		<table name="sample_Department" />
 		<attributes />
 	</entity>
-	<entity class="net.opentrends.training.model.impl.FooImpl" name="Foo">
-		<table name="sample_Foo" />
+	<entity class="net.opentrends.training.model.impl.MarksImpl" name="Marks">
+		<table name="sample_Marks" />
 		<attributes />
 	</entity>
 	<entity class="net.opentrends.training.model.impl.StudentImpl" name="Student">

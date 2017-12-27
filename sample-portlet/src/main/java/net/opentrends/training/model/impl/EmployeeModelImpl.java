@@ -54,9 +54,10 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
             { "age", Types.INTEGER },
             { "salary", Types.BIGINT },
             { "fileEntryId", Types.BIGINT },
-            { "unit", Types.VARCHAR }
+            { "unit", Types.VARCHAR },
+            { "groupId", Types.BIGINT }
         };
-    public static final String TABLE_SQL_CREATE = "create table sample_Employee (empId LONG not null primary key,employeeName VARCHAR(75) null,age INTEGER,salary LONG,fileEntryId LONG,unit VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table sample_Employee (empId LONG not null primary key,employeeName VARCHAR(75) null,age INTEGER,salary LONG,fileEntryId LONG,unit VARCHAR(75) null,groupId LONG)";
     public static final String TABLE_SQL_DROP = "drop table sample_Employee";
     public static final String ORDER_BY_JPQL = " ORDER BY employee.empId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY sample_Employee.empId ASC";
@@ -82,6 +83,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
     private long _salary;
     private long _fileEntryId;
     private String _unit;
+    private long _groupId;
     private Employee _escapedModel;
 
     public EmployeeModelImpl() {
@@ -106,6 +108,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
         model.setSalary(soapModel.getSalary());
         model.setFileEntryId(soapModel.getFileEntryId());
         model.setUnit(soapModel.getUnit());
+        model.setGroupId(soapModel.getGroupId());
 
         return model;
     }
@@ -170,6 +173,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
         attributes.put("salary", getSalary());
         attributes.put("fileEntryId", getFileEntryId());
         attributes.put("unit", getUnit());
+        attributes.put("groupId", getGroupId());
 
         return attributes;
     }
@@ -210,6 +214,12 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 
         if (unit != null) {
             setUnit(unit);
+        }
+
+        Long groupId = (Long) attributes.get("groupId");
+
+        if (groupId != null) {
+            setGroupId(groupId);
         }
     }
 
@@ -287,6 +297,17 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
         _unit = unit;
     }
 
+    @JSON
+    @Override
+    public long getGroupId() {
+        return _groupId;
+    }
+
+    @Override
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
+    }
+
     @Override
     public ExpandoBridge getExpandoBridge() {
         return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -320,6 +341,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
         employeeImpl.setSalary(getSalary());
         employeeImpl.setFileEntryId(getFileEntryId());
         employeeImpl.setUnit(getUnit());
+        employeeImpl.setGroupId(getGroupId());
 
         employeeImpl.resetOriginalValues();
 
@@ -397,12 +419,14 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
             employeeCacheModel.unit = null;
         }
 
+        employeeCacheModel.groupId = getGroupId();
+
         return employeeCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(15);
 
         sb.append("{empId=");
         sb.append(getEmpId());
@@ -416,6 +440,8 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
         sb.append(getFileEntryId());
         sb.append(", unit=");
         sb.append(getUnit());
+        sb.append(", groupId=");
+        sb.append(getGroupId());
         sb.append("}");
 
         return sb.toString();
@@ -423,7 +449,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(22);
+        StringBundler sb = new StringBundler(25);
 
         sb.append("<model><model-name>");
         sb.append("net.opentrends.training.model.Employee");
@@ -452,6 +478,10 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
         sb.append(
             "<column><column-name>unit</column-name><column-value><![CDATA[");
         sb.append(getUnit());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>groupId</column-name><column-value><![CDATA[");
+        sb.append(getGroupId());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

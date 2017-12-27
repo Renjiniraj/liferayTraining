@@ -270,6 +270,18 @@ public class EmployeeLocalServiceWrapper implements EmployeeLocalService,
             arguments);
     }
 
+    @Override
+    public void addResource(long companyid, long groupid, long userid,
+        java.lang.String entityName, java.lang.String primekey,
+        boolean portletActions, boolean addGroupPermissions,
+        boolean addGuestPermissions)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        _employeeLocalService.addResource(companyid, groupid, userid,
+            entityName, primekey, portletActions, addGroupPermissions,
+            addGuestPermissions);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

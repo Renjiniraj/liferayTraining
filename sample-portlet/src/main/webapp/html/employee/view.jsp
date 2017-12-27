@@ -21,12 +21,10 @@
 <liferay-ui:error key="error-key" message="Error - Delete operation only for Admin"/>
 
 <%
- PortletURL homeURL = renderResponse.createRenderURL();
 List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);
 %>
 <portlet:actionURL name="addEmpAction" var="addEmpActionURL"/>
 <h4>Add Employee Details Form here !</h4>
-<a href="<%=homeURL.toString()%>">Home</a>
 <br />
 <br />
 <aui:form action="<%=addEmpActionURL.toString()%>" method="post" name="addEmpAction" enctype="multipart/form-data">
@@ -37,7 +35,12 @@ List<Employee> employeesList = EmployeeLocalServiceUtil.getEmployees(-1, -1);
    <aui:input type="file" class="multi" maxlength="10" name="photo" value="Upload Photo"/> 
    <aui:button type="submit" name="" value="Submit"></aui:button>
 </aui:form>
-
+<%-- 
+  <portlet:resourceURL var="resourceUrl">
+            <portlet:param name="param1" value=""/>
+       </portlet:resourceURL>
+  <a href="${resourceUrl}">Export Details into ExcelSheet</a>
+ --%>
 <liferay-portlet:renderURL varImpl="iteratorURL">
        <portlet:param name="mvcPath" value="/html/employee/view.jsp" />
 </liferay-portlet:renderURL>

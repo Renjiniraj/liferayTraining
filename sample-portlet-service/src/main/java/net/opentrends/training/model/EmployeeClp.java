@@ -25,6 +25,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
     private long _salary;
     private long _fileEntryId;
     private String _unit;
+    private long _groupId;
     private BaseModel<?> _employeeRemoteModel;
     private Class<?> _clpSerializerClass = net.opentrends.training.service.ClpSerializer.class;
 
@@ -71,6 +72,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
         attributes.put("salary", getSalary());
         attributes.put("fileEntryId", getFileEntryId());
         attributes.put("unit", getUnit());
+        attributes.put("groupId", getGroupId());
 
         return attributes;
     }
@@ -111,6 +113,12 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 
         if (unit != null) {
             setUnit(unit);
+        }
+
+        Long groupId = (Long) attributes.get("groupId");
+
+        if (groupId != null) {
+            setGroupId(groupId);
         }
     }
 
@@ -246,6 +254,28 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
         }
     }
 
+    @Override
+    public long getGroupId() {
+        return _groupId;
+    }
+
+    @Override
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
+
+        if (_employeeRemoteModel != null) {
+            try {
+                Class<?> clazz = _employeeRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setGroupId", long.class);
+
+                method.invoke(_employeeRemoteModel, groupId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
     public BaseModel<?> getEmployeeRemoteModel() {
         return _employeeRemoteModel;
     }
@@ -319,6 +349,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
         clone.setSalary(getSalary());
         clone.setFileEntryId(getFileEntryId());
         clone.setUnit(getUnit());
+        clone.setGroupId(getGroupId());
 
         return clone;
     }
@@ -368,7 +399,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(15);
 
         sb.append("{empId=");
         sb.append(getEmpId());
@@ -382,6 +413,8 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
         sb.append(getFileEntryId());
         sb.append(", unit=");
         sb.append(getUnit());
+        sb.append(", groupId=");
+        sb.append(getGroupId());
         sb.append("}");
 
         return sb.toString();
@@ -389,7 +422,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(22);
+        StringBundler sb = new StringBundler(25);
 
         sb.append("<model><model-name>");
         sb.append("net.opentrends.training.model.Employee");
@@ -418,6 +451,10 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
         sb.append(
             "<column><column-name>unit</column-name><column-value><![CDATA[");
         sb.append(getUnit());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>groupId</column-name><column-value><![CDATA[");
+        sb.append(getGroupId());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

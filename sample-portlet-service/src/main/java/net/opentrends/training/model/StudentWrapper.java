@@ -37,11 +37,11 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("studentid", getStudentid());
-        attributes.put("fname", getFname());
-        attributes.put("lname", getLname());
-        attributes.put("age", getAge());
-        attributes.put("branch", getBranch());
-        attributes.put("email", getEmail());
+        attributes.put("name", getName());
+        attributes.put("dept_id", getDept_id());
+        attributes.put("rollNo", getRollNo());
+        attributes.put("userId", getUserId());
+        attributes.put("groupId", getGroupId());
 
         return attributes;
     }
@@ -54,34 +54,34 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
             setStudentid(studentid);
         }
 
-        String fname = (String) attributes.get("fname");
+        String name = (String) attributes.get("name");
 
-        if (fname != null) {
-            setFname(fname);
+        if (name != null) {
+            setName(name);
         }
 
-        String lname = (String) attributes.get("lname");
+        Long dept_id = (Long) attributes.get("dept_id");
 
-        if (lname != null) {
-            setLname(lname);
+        if (dept_id != null) {
+            setDept_id(dept_id);
         }
 
-        Integer age = (Integer) attributes.get("age");
+        Integer rollNo = (Integer) attributes.get("rollNo");
 
-        if (age != null) {
-            setAge(age);
+        if (rollNo != null) {
+            setRollNo(rollNo);
         }
 
-        String branch = (String) attributes.get("branch");
+        Long userId = (Long) attributes.get("userId");
 
-        if (branch != null) {
-            setBranch(branch);
+        if (userId != null) {
+            setUserId(userId);
         }
 
-        String email = (String) attributes.get("email");
+        Long groupId = (Long) attributes.get("groupId");
 
-        if (email != null) {
-            setEmail(email);
+        if (groupId != null) {
+            setGroupId(groupId);
         }
     }
 
@@ -126,103 +126,125 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
     }
 
     /**
-    * Returns the fname of this student.
+    * Returns the name of this student.
     *
-    * @return the fname of this student
+    * @return the name of this student
     */
     @Override
-    public java.lang.String getFname() {
-        return _student.getFname();
+    public java.lang.String getName() {
+        return _student.getName();
     }
 
     /**
-    * Sets the fname of this student.
+    * Sets the name of this student.
     *
-    * @param fname the fname of this student
+    * @param name the name of this student
     */
     @Override
-    public void setFname(java.lang.String fname) {
-        _student.setFname(fname);
+    public void setName(java.lang.String name) {
+        _student.setName(name);
     }
 
     /**
-    * Returns the lname of this student.
+    * Returns the dept_id of this student.
     *
-    * @return the lname of this student
+    * @return the dept_id of this student
     */
     @Override
-    public java.lang.String getLname() {
-        return _student.getLname();
+    public long getDept_id() {
+        return _student.getDept_id();
     }
 
     /**
-    * Sets the lname of this student.
+    * Sets the dept_id of this student.
     *
-    * @param lname the lname of this student
+    * @param dept_id the dept_id of this student
     */
     @Override
-    public void setLname(java.lang.String lname) {
-        _student.setLname(lname);
+    public void setDept_id(long dept_id) {
+        _student.setDept_id(dept_id);
     }
 
     /**
-    * Returns the age of this student.
+    * Returns the roll no of this student.
     *
-    * @return the age of this student
+    * @return the roll no of this student
     */
     @Override
-    public int getAge() {
-        return _student.getAge();
+    public int getRollNo() {
+        return _student.getRollNo();
     }
 
     /**
-    * Sets the age of this student.
+    * Sets the roll no of this student.
     *
-    * @param age the age of this student
+    * @param rollNo the roll no of this student
     */
     @Override
-    public void setAge(int age) {
-        _student.setAge(age);
+    public void setRollNo(int rollNo) {
+        _student.setRollNo(rollNo);
     }
 
     /**
-    * Returns the branch of this student.
+    * Returns the user ID of this student.
     *
-    * @return the branch of this student
+    * @return the user ID of this student
     */
     @Override
-    public java.lang.String getBranch() {
-        return _student.getBranch();
+    public long getUserId() {
+        return _student.getUserId();
     }
 
     /**
-    * Sets the branch of this student.
+    * Sets the user ID of this student.
     *
-    * @param branch the branch of this student
+    * @param userId the user ID of this student
     */
     @Override
-    public void setBranch(java.lang.String branch) {
-        _student.setBranch(branch);
+    public void setUserId(long userId) {
+        _student.setUserId(userId);
     }
 
     /**
-    * Returns the email of this student.
+    * Returns the user uuid of this student.
     *
-    * @return the email of this student
+    * @return the user uuid of this student
+    * @throws SystemException if a system exception occurred
     */
     @Override
-    public java.lang.String getEmail() {
-        return _student.getEmail();
+    public java.lang.String getUserUuid()
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _student.getUserUuid();
     }
 
     /**
-    * Sets the email of this student.
+    * Sets the user uuid of this student.
     *
-    * @param email the email of this student
+    * @param userUuid the user uuid of this student
     */
     @Override
-    public void setEmail(java.lang.String email) {
-        _student.setEmail(email);
+    public void setUserUuid(java.lang.String userUuid) {
+        _student.setUserUuid(userUuid);
+    }
+
+    /**
+    * Returns the group ID of this student.
+    *
+    * @return the group ID of this student
+    */
+    @Override
+    public long getGroupId() {
+        return _student.getGroupId();
+    }
+
+    /**
+    * Sets the group ID of this student.
+    *
+    * @param groupId the group ID of this student
+    */
+    @Override
+    public void setGroupId(long groupId) {
+        _student.setGroupId(groupId);
     }
 
     @Override

@@ -41,10 +41,12 @@ public class EmployeeLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName46;
-    private String[] _methodParameterTypes46;
-    private String _methodName47;
-    private String[] _methodParameterTypes47;
+    private String _methodName70;
+    private String[] _methodParameterTypes70;
+    private String _methodName71;
+    private String[] _methodParameterTypes71;
+    private String _methodName76;
+    private String[] _methodParameterTypes76;
 
     public EmployeeLocalServiceClpInvoker() {
         _methodName0 = "addEmployee";
@@ -129,13 +131,20 @@ public class EmployeeLocalServiceClpInvoker {
                 "net.opentrends.training.model.Employee"
             };
 
-        _methodName46 = "getBeanIdentifier";
+        _methodName70 = "getBeanIdentifier";
 
-        _methodParameterTypes46 = new String[] {  };
+        _methodParameterTypes70 = new String[] {  };
 
-        _methodName47 = "setBeanIdentifier";
+        _methodName71 = "setBeanIdentifier";
 
-        _methodParameterTypes47 = new String[] { "java.lang.String" };
+        _methodParameterTypes71 = new String[] { "java.lang.String" };
+
+        _methodName76 = "addResource";
+
+        _methodParameterTypes76 = new String[] {
+                "long", "long", "long", "java.lang.String", "java.lang.String",
+                "boolean", "boolean", "boolean"
+            };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -227,14 +236,28 @@ public class EmployeeLocalServiceClpInvoker {
             return EmployeeLocalServiceUtil.updateEmployee((net.opentrends.training.model.Employee) arguments[0]);
         }
 
-        if (_methodName46.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+        if (_methodName70.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
             return EmployeeLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName47.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+        if (_methodName71.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
             EmployeeLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
+
+            return null;
+        }
+
+        if (_methodName76.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+            EmployeeLocalServiceUtil.addResource(((Long) arguments[0]).longValue(),
+                ((Long) arguments[1]).longValue(),
+                ((Long) arguments[2]).longValue(),
+                (java.lang.String) arguments[3],
+                (java.lang.String) arguments[4],
+                ((Boolean) arguments[5]).booleanValue(),
+                ((Boolean) arguments[6]).booleanValue(),
+                ((Boolean) arguments[7]).booleanValue());
 
             return null;
         }

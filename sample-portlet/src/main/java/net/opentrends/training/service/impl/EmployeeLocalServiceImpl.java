@@ -1,5 +1,9 @@
 package net.opentrends.training.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.ResourceLocalServiceUtil;
+
 import net.opentrends.training.service.base.EmployeeLocalServiceBaseImpl;
 
 /**
@@ -17,9 +21,16 @@ import net.opentrends.training.service.base.EmployeeLocalServiceBaseImpl;
  * @see net.opentrends.training.service.EmployeeLocalServiceUtil
  */
 public class EmployeeLocalServiceImpl extends EmployeeLocalServiceBaseImpl {
-    /*
-     * NOTE FOR DEVELOPERS:
-     *
-     * Never reference this interface directly. Always use {@link net.opentrends.training.service.EmployeeLocalServiceUtil} to access the employee local service.
-     */
+
+	@Override
+	public void addResource(long companyid, long groupid, long userid, String entityName, String primekey,
+			boolean portletActions, boolean addGroupPermissions, boolean addGuestPermissions)
+			throws PortalException, SystemException {
+		// TODO Auto-generated method stub
+		ResourceLocalServiceUtil.addResources(companyid, groupid, userid, entityName, primekey, false, true, true);
+		return ;
+		
+	}
+   
+	
 }

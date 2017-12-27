@@ -236,4 +236,11 @@ public interface EmployeeLocalService extends BaseLocalService,
     public java.lang.Object invokeMethod(java.lang.String name,
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable;
+
+    public void addResource(long companyid, long groupid, long userid,
+        java.lang.String entityName, java.lang.String primekey,
+        boolean portletActions, boolean addGroupPermissions,
+        boolean addGuestPermissions)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
 }

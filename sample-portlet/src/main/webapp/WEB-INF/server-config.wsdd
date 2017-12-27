@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<globalConfiguration>
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl" />
+		<parameter name="sendXsiTypes" value="true" />
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="axis.sendMinimizedElements" value="true" />
+		<requestFlow>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+	<service name="Plugin_sample_DepartmentService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="net.opentrends.training.service.http.DepartmentServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="DepartmentServiceSoap" />
+		<parameter name="wsdlServiceElement" value="DepartmentServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_sample_DepartmentService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.training.opentrends.net" />
+	</service>
+	<service name="Plugin_sample_EmployeeService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="net.opentrends.training.service.http.EmployeeServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EmployeeServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EmployeeServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_sample_EmployeeService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.training.opentrends.net" />
+	</service>
+	<service name="Plugin_sample_FooService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="net.opentrends.training.service.http.FooServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="FooServiceSoap" />
+		<parameter name="wsdlServiceElement" value="FooServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_sample_FooService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.training.opentrends.net" />
+	</service>
+	<service name="Plugin_sample_MarksService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="net.opentrends.training.service.http.MarksServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="MarksServiceSoap" />
+		<parameter name="wsdlServiceElement" value="MarksServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_sample_MarksService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.training.opentrends.net" />
+	</service>
+	<service name="Plugin_sample_StudentService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="net.opentrends.training.service.http.StudentServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="StudentServiceSoap" />
+		<parameter name="wsdlServiceElement" value="StudentServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_sample_StudentService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.training.opentrends.net" />
+	</service>
+</deployment>

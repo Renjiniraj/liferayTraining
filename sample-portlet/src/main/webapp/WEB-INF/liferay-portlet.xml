@@ -2,9 +2,11 @@
 <!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.2.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_2_0.dtd">
 
 <liferay-portlet-app>
+
 	<portlet>
 		<portlet-name>sample</portlet-name>
 		<icon>/icon.png</icon>
+		<!-- <indexer-class>com.liferay.portlet.blogs.util.JournalArticleIndexer</indexer-class> -->
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
@@ -17,15 +19,7 @@
 		</footer-portlet-javascript>
 		<css-class-wrapper>new-portlet</css-class-wrapper>
 	</portlet>
-	<portlet>
-		<portlet-name>student</portlet-name>
-		<icon>/icon.png</icon>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>
-			/js/main.js
-		</footer-portlet-javascript>
-		<css-class-wrapper>student-portlet</css-class-wrapper>
-	</portlet>
+	
 	<portlet>
 		<portlet-name>employee</portlet-name>
 		<icon>/icon.png</icon>
@@ -35,14 +29,46 @@
 		</footer-portlet-javascript>
 		<css-class-wrapper>employee-portlet</css-class-wrapper>
 	</portlet>
+	
 	<portlet>
-		<portlet-name>role</portlet-name>
+		<portlet-name>friendly-url</portlet-name>
+		<icon>/icon.png</icon>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+	    <friendly-url-mapping>mappingUrl</friendly-url-mapping> 
+	    <friendly-url-routes>net/opentrends/training/mappingUrl-friendly-url-routes.xml</friendly-url-routes>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/main.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>friendly-url-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>webcontent</portlet-name>
+		<icon>/icon.png</icon>
+		<configuration-action-class> net.opentrends.training.config.WedcontentConfiguration</configuration-action-class>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/main.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>webcontent-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>student-details</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>
 			/js/main.js
 		</footer-portlet-javascript>
-		<css-class-wrapper>role-portlet</css-class-wrapper>
+		<css-class-wrapper>student-details-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>login</portlet-name>
+		<icon>/icon.png</icon>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>
+			/js/main.js
+		</footer-portlet-javascript>
+		<css-class-wrapper>login-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -64,13 +64,50 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	
 	<portlet>
-		<portlet-name>student</portlet-name>
-		<display-name>Student</display-name>
-		<portlet-class>com.test.StudentPortlet</portlet-class>
+		<portlet-name>employee</portlet-name>
+		<display-name>Employee</display-name>
+		<portlet-class>net.opentrends.training.EmployeePortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/html/student/view.jsp</value>
+			<value>/html/employee/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Employee</title>
+			<short-title>Employee</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	
+	
+	<portlet>
+		<portlet-name>friendly-url</portlet-name>
+		<display-name>Friendly Url</display-name>
+		<portlet-class>
+			net.opentrends.training.FriendlyUrlPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/friendlyurl/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -78,8 +115,8 @@
 			<portlet-mode>view</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Student</title>
-			<short-title>Student</short-title>
+			<title>Friendly Url</title>
+			<short-title>Friendly Url</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>
@@ -96,12 +133,14 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>employee</portlet-name>
-		<display-name>Employee</display-name>
-		<portlet-class>com.test.EmployeePortlet</portlet-class>
+		<portlet-name>webcontent</portlet-name>
+		<display-name>Webcontent</display-name>
+		<portlet-class>
+			net.opentrends.training.WebcontentPortlet
+		</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/html/employee/view.jsp</value>
+			<value>/html/webcontent/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -109,8 +148,74 @@
 			<portlet-mode>view</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Employee</title>
-			<short-title>Employee</short-title>
+			<title>Webcontent</title>
+			<short-title>Webcontent</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>student-details</portlet-name>
+		<display-name>Student Details</display-name>
+		<portlet-class>
+			net.opentrends.training.StudentDetailsPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/studentdetails/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Student Details</title>
+			<short-title>Student Details</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>login</portlet-name>
+		<display-name>Login</display-name>
+		<portlet-class>
+			net.opentrends.training.loginPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/login/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Login</title>
+			<short-title>Login</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>

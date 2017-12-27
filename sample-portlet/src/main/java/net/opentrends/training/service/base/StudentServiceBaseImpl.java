@@ -10,8 +10,9 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import net.opentrends.training.model.Student;
 import net.opentrends.training.service.StudentService;
-import net.opentrends.training.service.persistence.EmployeePersistence;
-import net.opentrends.training.service.persistence.FooPersistence;
+import net.opentrends.training.service.persistence.DepartmentPersistence;
+import net.opentrends.training.service.persistence.MarksPersistence;
+import net.opentrends.training.service.persistence.StudentFinder;
 import net.opentrends.training.service.persistence.StudentPersistence;
 
 import javax.sql.DataSource;
@@ -30,24 +31,26 @@ import javax.sql.DataSource;
  */
 public abstract class StudentServiceBaseImpl extends BaseServiceImpl
     implements StudentService, IdentifiableBean {
-    @BeanReference(type = net.opentrends.training.service.EmployeeLocalService.class)
-    protected net.opentrends.training.service.EmployeeLocalService employeeLocalService;
-    @BeanReference(type = net.opentrends.training.service.EmployeeService.class)
-    protected net.opentrends.training.service.EmployeeService employeeService;
-    @BeanReference(type = EmployeePersistence.class)
-    protected EmployeePersistence employeePersistence;
-    @BeanReference(type = net.opentrends.training.service.FooLocalService.class)
-    protected net.opentrends.training.service.FooLocalService fooLocalService;
-    @BeanReference(type = net.opentrends.training.service.FooService.class)
-    protected net.opentrends.training.service.FooService fooService;
-    @BeanReference(type = FooPersistence.class)
-    protected FooPersistence fooPersistence;
+    @BeanReference(type = net.opentrends.training.service.DepartmentLocalService.class)
+    protected net.opentrends.training.service.DepartmentLocalService departmentLocalService;
+    @BeanReference(type = net.opentrends.training.service.DepartmentService.class)
+    protected net.opentrends.training.service.DepartmentService departmentService;
+    @BeanReference(type = DepartmentPersistence.class)
+    protected DepartmentPersistence departmentPersistence;
+    @BeanReference(type = net.opentrends.training.service.MarksLocalService.class)
+    protected net.opentrends.training.service.MarksLocalService marksLocalService;
+    @BeanReference(type = net.opentrends.training.service.MarksService.class)
+    protected net.opentrends.training.service.MarksService marksService;
+    @BeanReference(type = MarksPersistence.class)
+    protected MarksPersistence marksPersistence;
     @BeanReference(type = net.opentrends.training.service.StudentLocalService.class)
     protected net.opentrends.training.service.StudentLocalService studentLocalService;
     @BeanReference(type = net.opentrends.training.service.StudentService.class)
     protected net.opentrends.training.service.StudentService studentService;
     @BeanReference(type = StudentPersistence.class)
     protected StudentPersistence studentPersistence;
+    @BeanReference(type = StudentFinder.class)
+    protected StudentFinder studentFinder;
     @BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
     protected com.liferay.counter.service.CounterLocalService counterLocalService;
     @BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
@@ -69,115 +72,116 @@ public abstract class StudentServiceBaseImpl extends BaseServiceImpl
      */
 
     /**
-     * Returns the employee local service.
+     * Returns the department local service.
      *
-     * @return the employee local service
+     * @return the department local service
      */
-    public net.opentrends.training.service.EmployeeLocalService getEmployeeLocalService() {
-        return employeeLocalService;
+    public net.opentrends.training.service.DepartmentLocalService getDepartmentLocalService() {
+        return departmentLocalService;
     }
 
     /**
-     * Sets the employee local service.
+     * Sets the department local service.
      *
-     * @param employeeLocalService the employee local service
+     * @param departmentLocalService the department local service
      */
-    public void setEmployeeLocalService(
-        net.opentrends.training.service.EmployeeLocalService employeeLocalService) {
-        this.employeeLocalService = employeeLocalService;
+    public void setDepartmentLocalService(
+        net.opentrends.training.service.DepartmentLocalService departmentLocalService) {
+        this.departmentLocalService = departmentLocalService;
     }
 
     /**
-     * Returns the employee remote service.
+     * Returns the department remote service.
      *
-     * @return the employee remote service
+     * @return the department remote service
      */
-    public net.opentrends.training.service.EmployeeService getEmployeeService() {
-        return employeeService;
+    public net.opentrends.training.service.DepartmentService getDepartmentService() {
+        return departmentService;
     }
 
     /**
-     * Sets the employee remote service.
+     * Sets the department remote service.
      *
-     * @param employeeService the employee remote service
+     * @param departmentService the department remote service
      */
-    public void setEmployeeService(
-        net.opentrends.training.service.EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public void setDepartmentService(
+        net.opentrends.training.service.DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     /**
-     * Returns the employee persistence.
+     * Returns the department persistence.
      *
-     * @return the employee persistence
+     * @return the department persistence
      */
-    public EmployeePersistence getEmployeePersistence() {
-        return employeePersistence;
+    public DepartmentPersistence getDepartmentPersistence() {
+        return departmentPersistence;
     }
 
     /**
-     * Sets the employee persistence.
+     * Sets the department persistence.
      *
-     * @param employeePersistence the employee persistence
+     * @param departmentPersistence the department persistence
      */
-    public void setEmployeePersistence(EmployeePersistence employeePersistence) {
-        this.employeePersistence = employeePersistence;
+    public void setDepartmentPersistence(
+        DepartmentPersistence departmentPersistence) {
+        this.departmentPersistence = departmentPersistence;
     }
 
     /**
-     * Returns the foo local service.
+     * Returns the marks local service.
      *
-     * @return the foo local service
+     * @return the marks local service
      */
-    public net.opentrends.training.service.FooLocalService getFooLocalService() {
-        return fooLocalService;
+    public net.opentrends.training.service.MarksLocalService getMarksLocalService() {
+        return marksLocalService;
     }
 
     /**
-     * Sets the foo local service.
+     * Sets the marks local service.
      *
-     * @param fooLocalService the foo local service
+     * @param marksLocalService the marks local service
      */
-    public void setFooLocalService(
-        net.opentrends.training.service.FooLocalService fooLocalService) {
-        this.fooLocalService = fooLocalService;
+    public void setMarksLocalService(
+        net.opentrends.training.service.MarksLocalService marksLocalService) {
+        this.marksLocalService = marksLocalService;
     }
 
     /**
-     * Returns the foo remote service.
+     * Returns the marks remote service.
      *
-     * @return the foo remote service
+     * @return the marks remote service
      */
-    public net.opentrends.training.service.FooService getFooService() {
-        return fooService;
+    public net.opentrends.training.service.MarksService getMarksService() {
+        return marksService;
     }
 
     /**
-     * Sets the foo remote service.
+     * Sets the marks remote service.
      *
-     * @param fooService the foo remote service
+     * @param marksService the marks remote service
      */
-    public void setFooService(
-        net.opentrends.training.service.FooService fooService) {
-        this.fooService = fooService;
+    public void setMarksService(
+        net.opentrends.training.service.MarksService marksService) {
+        this.marksService = marksService;
     }
 
     /**
-     * Returns the foo persistence.
+     * Returns the marks persistence.
      *
-     * @return the foo persistence
+     * @return the marks persistence
      */
-    public FooPersistence getFooPersistence() {
-        return fooPersistence;
+    public MarksPersistence getMarksPersistence() {
+        return marksPersistence;
     }
 
     /**
-     * Sets the foo persistence.
+     * Sets the marks persistence.
      *
-     * @param fooPersistence the foo persistence
+     * @param marksPersistence the marks persistence
      */
-    public void setFooPersistence(FooPersistence fooPersistence) {
-        this.fooPersistence = fooPersistence;
+    public void setMarksPersistence(MarksPersistence marksPersistence) {
+        this.marksPersistence = marksPersistence;
     }
 
     /**
@@ -234,6 +238,24 @@ public abstract class StudentServiceBaseImpl extends BaseServiceImpl
      */
     public void setStudentPersistence(StudentPersistence studentPersistence) {
         this.studentPersistence = studentPersistence;
+    }
+
+    /**
+     * Returns the student finder.
+     *
+     * @return the student finder
+     */
+    public StudentFinder getStudentFinder() {
+        return studentFinder;
+    }
+
+    /**
+     * Sets the student finder.
+     *
+     * @param studentFinder the student finder
+     */
+    public void setStudentFinder(StudentFinder studentFinder) {
+        this.studentFinder = studentFinder;
     }
 
     /**

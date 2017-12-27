@@ -41,10 +41,12 @@ public class StudentLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName46;
-    private String[] _methodParameterTypes46;
-    private String _methodName47;
-    private String[] _methodParameterTypes47;
+    private String _methodName48;
+    private String[] _methodParameterTypes48;
+    private String _methodName49;
+    private String[] _methodParameterTypes49;
+    private String _methodName54;
+    private String[] _methodParameterTypes54;
 
     public StudentLocalServiceClpInvoker() {
         _methodName0 = "addStudent";
@@ -129,13 +131,17 @@ public class StudentLocalServiceClpInvoker {
                 "net.opentrends.training.model.Student"
             };
 
-        _methodName46 = "getBeanIdentifier";
+        _methodName48 = "getBeanIdentifier";
 
-        _methodParameterTypes46 = new String[] {  };
+        _methodParameterTypes48 = new String[] {  };
 
-        _methodName47 = "setBeanIdentifier";
+        _methodName49 = "setBeanIdentifier";
 
-        _methodParameterTypes47 = new String[] { "java.lang.String" };
+        _methodParameterTypes49 = new String[] { "java.lang.String" };
+
+        _methodName54 = "findByGroupId";
+
+        _methodParameterTypes54 = new String[] { "long", "int", "int" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -227,16 +233,23 @@ public class StudentLocalServiceClpInvoker {
             return StudentLocalServiceUtil.updateStudent((net.opentrends.training.model.Student) arguments[0]);
         }
 
-        if (_methodName46.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+        if (_methodName48.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
             return StudentLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName47.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+        if (_methodName49.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
             StudentLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
+        }
+
+        if (_methodName54.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+            return StudentLocalServiceUtil.findByGroupId(((Long) arguments[0]).longValue(),
+                ((Integer) arguments[1]).intValue(),
+                ((Integer) arguments[2]).intValue());
         }
 
         throw new UnsupportedOperationException();

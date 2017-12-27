@@ -236,4 +236,8 @@ public interface StudentLocalService extends BaseLocalService,
     public java.lang.Object invokeMethod(java.lang.String name,
         java.lang.String[] parameterTypes, java.lang.Object[] arguments)
         throws java.lang.Throwable;
+
+    public java.util.List<java.lang.Object[]> findByGroupId(long groupId,
+        int begin, int end)
+        throws com.liferay.portal.kernel.exception.SystemException;
 }

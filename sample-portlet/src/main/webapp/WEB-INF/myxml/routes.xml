@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.2.0//EN" 
+
+"http://www.liferay.com/dtd/liferay-friendly-url-routes_6_2_0.dtd">
+
+<routes>
+
+ <!-- Friendly url when we access jsp pages(rendering from one jsp to another) -->
+
+ <route>
+
+     <pattern>/page/{jspPageName}</pattern>
+
+     <generated-parameter name="jspPage">/html/friendlyurl/{jspPageName}.jsp</generated-parameter>
+
+ </route>
+
+<!-- Friendly Url when we call action url -->
+
+ <route>
+
+     <pattern>/action/{actionName}</pattern>
+
+     <generated-parameter name="javax.portlet.action">{actionName}</generated-parameter>
+
+     <ignored-parameter name="p_auth"/>
+
+     <ignored-parameter name="p_p_id"/>
+
+     <implicit-parameter name="p_p_lifecycle">1</implicit-parameter>
+
+     <implicit-parameter name="p_p_state">normal</implicit-parameter>
+
+     <implicit-parameter name="p_p_mode">view</implicit-parameter>
+
+ </route>
+
+    
+
+ <!-- Friendly Url when we call action url passing parameter(Id)-->
+
+  <route>
+
+     <pattern>/action/{actionName}/mydetailsId/{mydetaiId:\d+}</pattern>
+
+     <generated-parameter name="javax.portlet.action">{actionName}</generated-parameter>
+
+     <generated-parameter name="mydetaiId">{mydetaiId}</generated-parameter>
+
+     <ignored-parameter name="p_auth"/>
+
+     <ignored-parameter name="p_p_id"/>
+
+     <implicit-parameter name="p_p_lifecycle">1</implicit-parameter>
+
+     <implicit-parameter name="p_p_state">normal</implicit-parameter>
+
+     <implicit-parameter name="p_p_mode">view</implicit-parameter>
+
+  </route>
+</routes>  
